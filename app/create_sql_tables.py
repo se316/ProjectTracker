@@ -30,10 +30,11 @@ def init_tables():
 if __name__ == '__main__':
     # sql client inputs
     # get these from the ENV
-    host = getenv('MYSQL_HOST') # 'localhost'
-    user = getenv('MYSQL_USER') # 'db_user'
-    pw = getenv('MYSQL_PASSWORD') # 'db_password123'
-    db = getenv('MYSQL_DATABASE') # 'project_tracker'
+    host = getenv('MYSQL_HOST')
+    user = getenv('MYSQL_USER')
+    pw = getenv('MYSQL_PASSWORD')
+    db = getenv('MYSQL_DATABASE')
+    # sql server needs some time the first time it's ever run before you can interact
     attempts = 0
     limit = 15
 
@@ -42,6 +43,7 @@ if __name__ == '__main__':
     while (attempts < limit):
         try:
             logging.info('Connecting to the database')
+            # attempt to connect
             con = mysql.connect(host=host,user=user, password=pw, database=db)
             cur = con.cursor()
 
@@ -49,8 +51,9 @@ if __name__ == '__main__':
             init_tables()
             break
         except Exception as e:
+            # show why we're unable to connect, then try again after sleeping
             logging.info('encountered an error: {}'.format(e))
-            logging.info('trying again in 5 seconds. This is attempt {}/10'.format(attempts+1))
+            logging.info('trying again in 5 seconds. This is attempt {}/{}'.format(attempts+1, limit))
             attempts += 1
             sleep(5)
             if attempts == limit - 1:
