@@ -54,7 +54,7 @@ docker-compose stop
 docker-compose down
 ```
 
-Once you see that the web server is listening on port 8080, in a browser go to <hostname>:8080 to be taken to the ProjectTracker's home page. 
+Once you see that the web server is listening on port 8080, in a browser go to ```<hostname>:8080``` to be taken to the ProjectTracker's home page. 
 
 ## What are the different servers launched in this package? 
 
