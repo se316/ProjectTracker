@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Project{% endblock %}
+
+{% block content %}
+<div class='content large-form'>
+	<h2>Edit your project</h2>
+	<form action='{{ url_for('edit.project', projid=project['pid']) }}' method='post' autocomplete='off'>
+		<input type='text' name='ptitle' value='{{ project['pname'] }}' id='ptitle' required>
+		<textarea onkeyup='convert_md("pdescription");' name='pdescription' id='pdescription'>{{project['pdescription'] }}</textarea>
+			<div class="msg">{{ msg }}</div>
+			<div class='button-row'>
+				<a href="{{ url_for('view.project', projid=project['pid']) }}"><button  type="button" class='child-button'>Discard</button></a>
+				<input type='submit' value='Save' class='child-button'>
+			</div>
+	</form>
+	<hr><p>Preview:</p>
+	<div id='preview'></div>
+</div>
+
+{% endblock %}

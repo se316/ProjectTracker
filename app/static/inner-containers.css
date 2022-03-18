@@ -1,0 +1,198 @@
+/* This stylesheet is for elements displayed within the body and main content divs */
+
+
+/* navigation bar inner elements */
+.navtop div {
+        display: flex;
+	align-items: center;
+	justify-content: flex-end;
+        margin: 0 auto;
+        width: 1000px;
+	height: 100%;
+}
+.navtop div .create-button {
+        background: #ffc93c;
+        color: #323232;
+}
+
+.navtop div .create-button:hover {
+        background: #ff6f3c;
+        color: #eaebed;
+}
+
+
+.small-form form  {
+	display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.small-form form label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        background-color: #3274d6;
+        color: #ffffff;
+}
+
+.small-form input[type="submit"] {
+        width: 360px;
+        padding: 15px;
+        margin-top: 20px;
+        background-color: #3274d6;
+        border: 0;
+        cursor: pointer;
+        font-weight: bold;
+        color: #ffffff;
+        transition: background-color 0.2s;
+}
+
+.small-form input[type="submit"]:hover {
+        background-color: #2868c7;
+        transition: background-color 0.2s;
+}
+
+.small-form form input[type="password"], .small-form form input[type="text"] {
+        width: 310px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+}
+.large-form input, .large-form textarea {
+	width: 100%;
+	border-radius: 4px;
+}
+.large-form input, .large-form .child-button{ 
+	height: 30px;
+	font-size: 20px;
+}
+.large-form textarea {
+	height: 400px;
+	resize: none;
+}
+/* the div (row) save/discard buttons are stored in for a form */
+.button-row {
+	width: 100%;
+	padding-left:0;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
+
+.button-row .left {
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 50%;
+}
+.button-row .right {
+	display: inline-flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 50%;
+}
+
+div.entry-items .button-row {
+	padding: 15px;
+}
+.large-form div.button-row button.child-button, .large-form div.button-row input.child-button {
+	margin-left: 5px;
+	width: 80px;
+	height: 40px;
+	flex; 40%;
+}
+
+.child-button:hover {
+	cursor: pointer;
+}
+
+div.button-row a i {
+	width: 20px;
+	height: 20px;
+	margin-left: 5px;
+}
+
+div.entry-item div.button-row a {
+	text-align: center;
+	margin-left: 5px;
+}
+
+.content .entry-item {
+	padding: 15px;
+	background-color: #e0e0e0;
+	border-radius: 5px;
+}
+.content .entry-item .button-row {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+}
+.content .entry-item .button-row h3 {
+	align-self: flex-start;
+	margin-right: auto;
+	margin-left: 0;
+	width: 100%;
+}
+.content .entry-item .button-row .child-button {
+	align-self: flex-end;
+}
+.content .tabs {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+.content .tabs a {
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	color: inherit;
+}
+.tabs .active {
+	background-color: #e0e0e0;
+	border-radius: 5px;
+}
+.tab-row {
+	display: grid;
+	grid-template-columns: 50px auto;
+}
+.tab-row .br {
+	border-radius: 5px;
+}
+.tab-row .br:hover {
+	background: #ff6f3c;
+}
+
+.entry-item > div > form {
+	width: 100%;
+}
+.entry-item #cm-preview {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+.entry-item > div > form > textarea {
+	width: 100%;
+	height: 100px;
+	resize: none;
+}
+.entry-item > div > form > button {
+	width: 50%;
+}
+#new-comment {
+	display: grid;
+}
+.button-row .left i {
+	width: 40px;
+	height: 30px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+}

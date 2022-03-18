@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ subtask['stname'] }}{% endblock %}
+
+{% block content %}
+
+<!-- these are the tabs for switching b/w subtask and comment view -->
+<div class='tabs'>
+	<div class='active tab-row'>
+		<a href="{{ url_for('view.project', projid=subtask['pid']) }}" title='back to project' class='br'>
+			<i class="fa-solid fa-circle-arrow-left"></i>
+		</a>
+		<a href="{{ url_for('view.subtask', stid=subtask['stid']) }}">Subtask</a>
+	</div>
+	<a href="{{ url_for('view.comments', stid=subtask['stid']) }}">Comments</a>
+</div>
+
+<div class='entry-item' id='subtask_view'>
+	<div class='button-row'>
+		<div class='left'>
+			<a href='' class='child-button'>
+				<h3><i class='current-icon'></i>
+					{{ subtask['stname'] }}
+				</h3>
+			</a>
+		</div>
+		<div class='right'>
+			<a href='{{ url_for('edit.subtask', stid=subtask['stid']) }}' class='child-button' title='Edit'>
+				<i class="fa-solid fa-pen-to-square"></i></a>
+			<a onclick='confirm_delete("subtask", {{ subtask["stid"] }})' class='child-button' title='Delete'>
+				<i class="fa-solid fa-square-minus"></i></a>
+		</div>
+	</div>
+	<div class='description' id="stdiv-{{ subtask['stid'] }}">
+		{{ subtask['stdescription'] | safe }}
+	</div>
+	<div class='button-row'>
+		<div class='left'>
+			<p class='small-txt'>Last modified: {{subtask['last_modified_time']}}</p>
+		</div>
+		<div class='right'>
+			<p class='small-txt'>Status: </p>
+			<form id='st-status-{{subtask['stid']}}' 
+			      action="{{url_for('edit.status', level='subtask', id=subtask['stid']) }}" 
+			      method='post'
+			      onchange='update_status("subtask",{{subtask["stid"]}}, "st-status-{{subtask['stid']}}")'>
+				<select name="status" class='current-status' onchange='update_status_icons()'>
+					<option value="Not Started">Not Started</option>
+					<option value='Pending'>Pending</option>
+					<option value="In Progress">In Progress</option>
+					<option value="Review">Review</option>
+					<option value="Complete">Complete</option>
+					<option value="none" selected disabled hidden>{{subtask['ststatus']}}</option>
+				</select>
+			</form>
+			<p class='small-txt'>Created: {{subtask['create_time']}}</p>
+		</div>
+	</div>
+</div>
+
+	<script>
+		window.onload = () => update_status_icons();
+	</script>
+
+
+{% endblock %}

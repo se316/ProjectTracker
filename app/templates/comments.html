@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ subtask['stname'] }}{% endblock %}
+
+{% block content %}
+
+<!-- these are the tabs for switching b/w subtask and comment view -->
+<div class='tabs'>
+	<div class='tab-row'>
+		<a href="{{ url_for('view.project', projid=subtask['pid']) }}" title='back to project' class='br'>
+			<i class="fa-solid fa-circle-arrow-left"></i>
+		</a>
+		<a href="{{ url_for('view.subtask', stid=subtask['stid']) }}">Subtask</a>
+	</div>
+	<a href="{{ url_for('view.comments', stid=subtask['stid']) }}" class='active'>Comments</a>
+</div>
+
+<!-- add comment input goes here -->
+
+<div class='entry-item' id='comment_view'>
+	<div id='new-comment'>
+		<form class='' action="{{ url_for('view.comments', stid=subtask['stid']) }}", method="post" autocomplete='off'>
+			<textarea onkeyup='convert_md("comment")' name='comment' id='comment' class=''></textarea>
+			<input type='submit' value="Add comment">
+		</form>
+		<div class='cm-preview'>
+			<p>Preview:</p>
+			<div id='preview'></div>
+		</div>
+	</div>
+{% if comments %}
+{% for comment in comments %}
+	<hr>
+	<div id="cm{{comment['cmid']}}" class="button-row">
+		<div class='left'>
+			{% if comment['create_time'] != comment['last_modified_time'] %}
+			<p class='small-txt'>last modified: {{comment['last_modified_time']}}<p>
+			{% else %}
+			<p class='small-txt'>commented: {{comment['create_time'] }}</p>
+			{% endif %}
+		</div>
+		<div class='right'>
+			<a href="#cm{{ comment['cmid'] }}" class='child-button' title='Link'>
+				<i class="fa-solid fa-copy"></i></a>
+			<a href="{{ url_for('edit.comment', cmid=comment['cmid']) }}" class='child-button' title='Edit'>
+				<i class="fa-solid fa-pen-to-square"></i></a>
+			<a onclick="confirm_delete('comment', {{comment['cmid']}});" class='child-button' title='Delete'>
+				<i class="fa-solid fa-square-minus"></i></a>
+		</div>
+	</div>
+	<div class='description comment' id='cmdiv-{{comment['cmid']}}'>
+		{{ comment['comment'] | safe }}
+	</div>
+{% endfor %}
+{% endif %}
+</div>
+
+
+{% endblock %}

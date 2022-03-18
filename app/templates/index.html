@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='outer-containers.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='inner-containers.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='text.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+	<body>
+		<div class="small-form">
+			<h1>Login</h1>
+			<div class="links">
+				<a href="{{ url_for('view.login') }}" class="big-txt">Login</a>
+				<a href="{{ url_for('new.account') }}">Register</a>
+			</div>
+			<form action="{{ url_for('view.login') }}" method="post" id="login">
+				<label for="username">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="username" placeholder="Username" id="username" required>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+				{% if msg|length > 0 %}
+				<div class="msg error_msg">{{ msg }}</div>
+				{% endif %}
+				<input type="submit" value="Login">
+			</form>
+		</div>
+	</body>
+</html>

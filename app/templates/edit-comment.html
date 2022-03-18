@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Comment{% endblock %}
+
+{% block content %}
+<div class='content large-form'>
+	<h2>Edit your comment</h2>
+	<form action='{{ url_for('edit.comment', cmid=comment['cmid']) }}' method='post' autocomplete='off'>
+		<textarea onkeyup="convert_md('comment');" name='comment' id='comment'>{{comment['comment'] }}</textarea>
+			<div class="msg">{{ msg }}</div>
+			<div class='button-row'>
+				<a href="{{ url_for('view.comments', stid=comment['stid']) }}"><button  type="button" class='child-button'>Discard</button></a>
+				<input type='submit' value='Save' class='child-button'>
+			</div>
+	</form>
+	<hr><p>Preview:</p>
+	<div id='preview'></div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ project['pname'] }}{% endblock %}
+
+{% block content %}
+
+<!-- these are the tabs for switching b/w project and subtask view -->
+<div class='tabs'>
+	<a onclick='toggle_view("project_view")' class='active'>Project</a>
+	<a onclick='toggle_view("subtask_view")'>Subtasks</a>
+</div>
+<div class='entry-item' id='project_view'>
+	<div class='button-row'>
+		<div class='left'>
+			<a href='{{ url_for('view.project', projid=project['pid']) }}' class='child-button big-txt'>
+				<h3><i class='current-icon'></i>
+					{{ project['pname'] }}
+				</h3>
+			</a>
+		</div>
+		<div class='right'>
+			<a href='{{ url_for('edit.project', projid=project['pid']) }}' class='child-button' title='Edit'>
+				<i class="fa-solid fa-pen-to-square"></i></a>
+			<a onclick='confirm_delete("project", {{ project["pid"] }})' class='child-button' title='Delete'>
+				<i class="fa-solid fa-square-minus"></i></a>
+		</div>
+	</div>
+	<div class='description' id="pdiv-{{ project['pid'] }}">
+		{{ project['pdescription'] | safe }}
+	</div>
+	<div class='button-row'>
+		<div class='left'>
+			<p class='small-txt'>Last modified: {{project['last_modified_time']}}<p>
+		</div>
+		<div class='right'>
+			<form id='status-{{project['pid']}}' 
+			      action="{{url_for('edit.status', level='project', id=project['pid']) }}" 
+			      method='post'
+			      onchange='update_status("project",{{project["pid"]}}, "status-{{project['pid']}}")'>
+				<select name="status" class='current-status' onchange='update_status_icons()'>
+					<option value="Not Started">Not Started</option>
+					<option value='Pending'>Pending</option>
+					<option value="In Progress">In Progress</option>
+					<option value="Review">Review</option>
+					<option value="Complete">Complete</option>
+					<option value="none" selected disabled hidden>{{project['pstatus']}}</option>
+				</select>
+			</form>
+			<p class='small-txt'>Created: {{project['create_time']}}</p>
+		</div>
+	</div>
+</div>
+<div class='entry-item' id='subtask_view' style='display: none;'>
+	<ul>
+		{% if subtasks %}
+		{% for subtask in subtasks %}
+		<li class='entry-item'>
+			<div class="button-row">
+				<div class='left'>
+					<a class="child-button big-txt" href="{{ url_for('view.subtask', stid=subtask['stid']) }}">
+						<i class='current-icon'></i>
+						{{subtask['stname']}}
+					</a>
+				</div>
+				<div class='right'>
+					<a onclick="show_hide('stdiv-{{ subtask['stid'] }}');" class='child-button' title='Toggle visibility'>
+						<i class="fa-solid fa-eye"></i></a>
+					<a href="{{url_for('edit.subtask', stid=subtask['stid'])}}" class='child-button' title='Edit'>
+						<i class="fa-solid fa-pen-to-square"></i></a>
+					<a onclick="confirm_delete('subtask', {{subtask['stid']}});" class='child-button' title='Delete'>
+						<i class="fa-solid fa-square-minus"></i></a>
+				</div>
+			</div>
+			<div class='description' id='stdiv-{{subtask['stid']}}' style='display:none'>
+				{{ subtask['stdescription'] | safe }}
+			</div>
+			<div class='button-row'>
+				<div class='left'>
+					<p class='small-txt'>Last modified: {{subtask['last_modified_time']}}</p>
+				</div>
+				<div class='right'>
+					<p class='small-txt'>Status: </p>
+					<form id='st-status-{{subtask['stid']}}' 
+					      action="{{url_for('edit.status', level='subtask', id=subtask['stid']) }}" 
+					      method='post'
+					      onchange='update_status("subtask",{{subtask["stid"]}}, "st-status-{{subtask['stid']}}")'>
+						<select name="status" class='current-status' onchange='update_status_icons()'>
+							<option value="Not Started">Not Started</option>
+							<option value='Pending'>Pending</option>
+							<option value="In Progress">In Progress</option>
+							<option value="Review">Review</option>
+							<option value="Complete">Complete</option>
+							<option value="none" selected disabled hidden>{{subtask['ststatus']}}</option>
+						</select>
+					</form>
+					<p class='small-txt'>Created: {{subtask['create_time']}}</p>
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+		{% endif %}
+		<li>
+			<a href="{{ url_for('new.subtask') }}">
+				<i class="fa-solid fa-plus create-button">
+				</i> New Subtask
+			</a>
+		</li>
+	</ul>
+</div>
+	<script>
+		window.onload = () => update_status_icons();
+	</script>
+
+
+{% endblock %}

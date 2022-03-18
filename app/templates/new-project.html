@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}New Project{% endblock %}
+
+{% block content %}
+<div class='content large-form'>
+	<h2>Start a new project</h2>
+	<form action='{{ url_for('new.project') }}' method='post' autocomplete='off'>
+			<input type='text' name='ptitle' placeholder='The name or title for your project' id='ptitle' required>
+			<textarea onkeyup='convert_md("pdescription")' name='pdescription' id='pdescription' placeholder='Type a description'></textarea>
+			<div class="msg">{{ msg }}</div>
+			<div class='button-row'>
+				<button onclick="window.location={{ url_for('view.home') }}" type="button" class='child-button'>Discard</button>
+				<input type='submit' value='Save' class='child-button'>
+			</div>
+	<hr><p>Preview:</p>
+	<div id='preview'></div>
+	</form>
+</div>
+
+{% endblock %}

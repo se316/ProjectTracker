@@ -1,0 +1,67 @@
+/* This stylesheet is for outer level containers like the body, home pg background etc.
+   it does not cover what gets styled within these elements */
+
+body {
+        background-color: #435165;
+        margin: 0;
+	align-items: center;
+}
+
+body.content {
+        background-color: #f3f4f7;
+}
+
+/* navigation bar container */
+
+.navtop {
+        background-color: #2f3947;
+        height: 60px;
+        width: 100%;
+        border: 0;
+}
+
+/* register, login */
+.small-form {
+        width: 400px;
+        background-color: #ffffff;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+        margin: 100px auto;
+	display: grid;
+	padding-top: 15x;
+	text-align: center;
+}
+
+/* homepage, projects, subtasks 
+ *
+ I probs either want to generalize these options to work with a form /and/ the home pg, or
+ make a new thing for home page content. I think that's still on my to-do list actually but
+ check your notebook to see what u have css for vs what u need. 
+
+ also, I believe what you currently have marked as `.loggedin` should be `.content` ?
+ double check where it's referenced and see if that's correct.
+ *
+ */
+.large-form {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 5px;
+}
+body.content {
+	width: 100%;
+}
+.content {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.new-template form {
+	background-color: #34495e;
+	text-align: center;
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
+} 
+div.entry-item {
+	display: block;
+}

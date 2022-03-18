@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='outer-containers.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='inner-containers.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='text.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='md_style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
+		<script src="https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
+	</head>
+	<body class='content'>
+		<nav class="navtop">
+			<div>
+				<h1><i class="fa-solid fa-screwdriver-wrench"></i>Project Tracker</h1>
+                <a href="{{ url_for('view.home') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="#"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="{{ url_for('view.logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+				<a href="{{ url_for('new.project')}}" class="create-button"><i class="fas fa-plus-square"></i>New Project</a>
+				<a onclick='markdown_help()'><i class="fa-solid fa-circle-question"></i>What is Markdown?</a>
+			</div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+		<script src="{{ url_for('static', filename='utils.js') }}"></script>
+	</body>
+</html>

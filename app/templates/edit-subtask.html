@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Subtask{% endblock %}
+
+{% block content %}
+<div class='content large-form'>
+	<h2>Edit your subtask</h2>
+	<form action='{{ url_for('edit.subtask', stid=subtask['stid']) }}' method='post' autocomplete='off'>
+		<input type='text' name='stname' value='{{ subtask['stname'] }}' id='stname' required>
+		<textarea onkeyup="convert_md('stdescription');" name='stdescription' id='stdescription'>{{subtask['stdescription'] }}</textarea>
+			<div class="msg">{{ msg }}</div>
+			<div class='button-row'>
+				<a href="{{ url_for('view.project', projid=pid) }}"><button  type="button" class='child-button'>Discard</button></a>
+				<input type='submit' value='Save' class='child-button'>
+			</div>
+	</form>
+	<hr><p>Preview:</p>
+	<div id='preview'></div>
+</div>
+
+{% endblock %}

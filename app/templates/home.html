@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if projects %}
+{% for project in projects %}
+
+<div class='entry-item'>
+	<div class='button-row'>
+		<div class='left'>
+			<a href='{{ url_for('view.project', projid=project['pid']) }}' class='child-button'>
+				<h3>
+					<i class='current-icon'></i>
+					{{ project['pname'] }}
+				</h3>
+			</a>
+		</div>
+		<div class='right'>
+			<a onclick='show_hide("pdiv-{{ project['pid'] }}")' class='child-button' title='Toggle visibility'>
+				<i class="fa-solid fa-eye"></i></a>
+			<a href='{{ url_for('edit.project', projid=project['pid']) }}' class='child-button' title='Edit'>
+				<i class="fa-solid fa-pen-to-square"></i></a>
+			<a onclick='confirm_delete("project", {{ project["pid"] }})' class='child-button' title='Delete'>
+				<i class="fa-solid fa-square-minus"></i></a>
+		</div>
+	</div>
+	<div class='description' id="pdiv-{{ project['pid'] }}" style='display:none;'>
+		{{ project['pdescription'] | safe }}
+	</div>
+	<div class='button-row'>
+		<div class='left'>
+			<p class='small-txt'>Last modified: {{project['last_modified_time']}}<p>
+		</div>
+		<div class='right'>
+			<p class='small-txt'>Status: </p>
+                        <form id='status-{{project['pid']}}'
+                              action="{{url_for('edit.status', level='project', id=project['pid']) }}"
+                              method='post'
+                              onchange='update_status("project",{{project["pid"]}}, "status-{{project['pid']}}")'>
+                                <select name="status" onchange="update_status_icons()" class='current-status'>
+                                        <option value="Not Started">Not Started</option>
+                                        <option value='Pending'>Pending</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Review">Review</option>
+                                        <option value="Complete">Complete</option>
+                                        <option value="none" selected disabled hidden>{{project['pstatus']}}</option>
+                                </select>
+                        </form>
+			<p class='small-txt'>Created: {{project['create_time']}}</p>
+		</div>
+	</div>
+</div>
+<hr>
+
+{% endfor %}
+{% else %}
+<p>
+    {{ no_projects }}
+</p>
+{% endif %}
+	<script>
+		window.onload = () => update_status_icons();
+	</script>
+{% endblock %}

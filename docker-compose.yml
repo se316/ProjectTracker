@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+        mysql-db:
+                build:
+                        context: ./mysqldb
+                        dockerfile: Dockerfile
+                        target: base
+                env_file:
+                        - mysqldb/.env
+                volumes:
+                        - sqlData:/var/lib/mysql
+                        - sqlLogs:/var/log/mysql
+                image: mysql-db:latest
+                restart: always
+                container_name: mysql-db
+                ports: 
+                        - "3306:3306"
+        project-app:
+                build:
+                        context: ./app
+                image: project-app:latest
+                container_name: project-app
+                depends_on:
+                        - mysql-db
+                env_file:
+                        - app/.env
+                ports:
+                        - "8080:8080"
+
+volumes:
+        sqlData:
+        sqlLogs:
