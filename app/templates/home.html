@@ -5,6 +5,17 @@
 {% block content %}
 
 {% if projects %}
+<div class='filter-row'>
+		<p class='small-txt'>Filter Projects: </p>
+		<button type='button' onclick='entry_filter(active_projects)' title='Show projects that are In Progress, Pending or in Review.'>
+			<i class="fa-solid fa-box-open"></i>Active</button>
+		<button type='button' onclick='entry_filter(inactive_projects)' title='Show projects that are Not Started.'>
+			<i class="fa-solid fa-box"></i>Inactive</button>
+		<button type='button' onclick='entry_filter(completed_projects)' title='Show projects that are Complete.'>
+			<i class="fa-solid fa-circle-check"></i>Complete</button>
+		<button type='button' onclick='entry_filter(all_projects)' title='Show all projects.'>
+			All</button>
+</div>
 {% for project in projects %}
 
 <div class='entry-item'>
@@ -52,7 +63,6 @@
 		</div>
 	</div>
 </div>
-<hr>
 
 {% endfor %}
 {% else %}

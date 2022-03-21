@@ -1,3 +1,29 @@
+// home page filter buttons
+
+var active_projects = ['In Progress','Pending','Review'];
+var inactive_projects = ['Not Started'];
+var all_projects = ['All'];
+var completed_projects = ['Complete'];
+
+function entry_filter(status_filters) {
+    var entries = document.getElementsByClassName('entry-item');
+    var statuses = document.getElementsByClassName('current-status');
+    for (i=0; i<entries.length; i++) {
+        var current_status = statuses[i].selectedOptions[0].text;
+        var current_entry = entries[i];
+        // if the project status is in a filter list
+        if (status_filters.indexOf(current_status) != -1) {
+            current_entry.style.display = 'block';
+        // if you want to see all your projects
+        } else if (status_filters == 'All') {
+            current_entry.style.display = 'block';
+        // if the project status is not listed and you don't want to see them all
+        } else {
+            current_entry.style.display = 'none';
+        }
+    }
+}
+
 // update status icons when the selected status is changed
 
 function update_status_icons () {

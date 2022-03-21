@@ -64,4 +64,5 @@ body.content {
 } 
 div.entry-item {
 	display: block;
+	margin-bottom: 15px;
 }

@@ -153,6 +153,27 @@ div.entry-item div.button-row a {
 	text-decoration: none;
 	color: inherit;
 }
+.content > .filter-row {
+	display: flex;
+	margin-bottom: 5px;
+	justify-content: flex-end;
+	align-items: center;
+}
+.content > .filter-row > button {
+	margin-left: 5px;
+	width: 110px;
+	height: 30px;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.content > .filter-row > button:hover {
+	cursor: pointer;
+}
+
+.content > .filter-row > button > i {
+	margin-right: 5px;
+}
 .tabs .active {
 	background-color: #e0e0e0;
 	border-radius: 5px;
@@ -196,3 +217,4 @@ div.entry-item div.button-row a {
 	justify-content: center;
 	border-radius: 5px;
 }
+
