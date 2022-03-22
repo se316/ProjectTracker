@@ -27,4 +27,4 @@ def index():
     return redirect(url_for('view.home'))
 
 # run the server
-app.run(debug=True, host='0.0.0.0', port='8080')
+app.run(debug=True, host='0.0.0.0', port='443', ssl_context='adhoc')
