@@ -90,6 +90,11 @@
 	align-items: center;
 	width: 50%;
 }
+
+div.button-row div.top {
+	text-align: left;
+	white-space: nowrap;
+}
 .button-row .right {
 	display: inline-flex;
 	justify-content: flex-end;
@@ -118,7 +123,7 @@ div.button-row a i {
 }
 
 div.entry-item div.button-row a {
-	text-align: center;
+	text-align: left;
 	margin-left: 5px;
 }
 

@@ -11,7 +11,7 @@
 </div>
 <div class='entry-item' id='project_view'>
 	<div class='button-row'>
-		<div class='left'>
+		<div class='left top'>
 			<a href='{{ url_for('view.project', projid=project['pid']) }}' class='child-button big-txt'>
 				<h3><i class='current-icon'></i>
 					{{ project['pname'] }}
@@ -56,7 +56,7 @@
 		{% for subtask in subtasks %}
 		<li class='entry-item'>
 			<div class="button-row">
-				<div class='left'>
+				<div class='left top'>
 					<a class="child-button big-txt" href="{{ url_for('view.subtask', stid=subtask['stid']) }}">
 						<i class='current-icon'></i>
 						{{subtask['stname']}}
