@@ -20,7 +20,7 @@ Using those 3 levels together helps keep things organized while reducing how muc
 - Review
 - Complete
 
-Each status has its own corresponding color and icon to make differentiating between things even easier. To get started with project tracker, go to ```<"localhost" or ip address it's running on>:8080``` and it'll take you to the login/register page. Make yourself an account then you're ready to login and get started. 
+Each status has its own corresponding color and icon to make differentiating between things even easier. To get started with project tracker, go to ```https://<"localhost" or ip address it's running on>``` and it'll take you to the login/register page. Make yourself an account then you're ready to login and get started. 
 
 ## Is the data used in registration used or shared with anyone?
 
@@ -49,12 +49,12 @@ docker-compose --build
 # this is how to start the app, add " -d" to run it in the background
 docker-compose up
 
-# these are how to stop the app, you can also Ctrl+C if you only have one terminal open
+# these are two ways to stop the app, you can also Ctrl+C if you only have one terminal open
 docker-compose stop
 docker-compose down
 ```
 
-Once you see that the web server is listening on port 8080, in a browser go to ```<hostname>:8080``` to be taken to the ProjectTracker's home page. 
+Once you see that the web server is listening on port 443, in a browser go to ```https://localhost``` to be taken to the ProjectTracker's home page. The current version uses a self signed cert, so accept the risk and continue to the site. This will be replaced with a trusted certificate in a future update.
 
 ## What are the different servers launched in this package? 
 
