@@ -1,13 +1,18 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
-        stm_login, stm_projects, stm_delete_project, stm_select_project, stm_select_subtask, \
-        stm_select_comment, stm_update_project, stm_update_subtask, stm_update_comment, \
-        stm_update_status_project, stm_update_status_subtask
+    stm_login, stm_projects, stm_delete_project, stm_select_project, stm_select_subtask, \
+    stm_select_comment, stm_update_project, stm_update_subtask, stm_update_comment, \
+    stm_update_status_project, stm_update_status_subtask
 
 from datetime import datetime
 
 
-update_bp = Blueprint('edit', __name__, url_prefix='/edit', template_folder='templates')
+update_bp = Blueprint(
+    'edit',
+    __name__,
+    url_prefix='/edit',
+    template_folder='templates')
+
 
 @update_bp.route('/status/<level>/<id>', methods=['POST'])
 def status(level, id):
@@ -41,7 +46,8 @@ def status(level, id):
     else:
         return redirect(url_for('view.login'))
 
-@update_bp.route('/project/<projid>', methods=['GET','POST'])
+
+@update_bp.route('/project/<projid>', methods=['GET', 'POST'])
 def project(projid):
     """
     Edit a given project id
@@ -53,11 +59,12 @@ def project(projid):
             cursor = con.connection.cursor(dict_cursor)
 
             # use the user id and project id to retrieve the project
-            cursor.execute(stm_select_project, (uid,projid,))
+            cursor.execute(stm_select_project, (uid, projid,))
             project = cursor.fetchone()
 
             # pass the values to the project editor template
-            return render_template('edit-project.html', project=project, msg='')
+            return render_template(
+                'edit-project.html', project=project, msg='')
         # if the user is submitting information, update the db with the modified entries
         # and update the last_modified_time val
         elif request.method == 'POST':
@@ -67,11 +74,11 @@ def project(projid):
 
             # prep args to be updated and matched against
             update_args = [
-                    request.form['ptitle'],
-                    request.form['pdescription'],
-                    update_time,
-                    uid,
-                    projid]
+                request.form['ptitle'],
+                request.form['pdescription'],
+                update_time,
+                uid,
+                projid]
 
             # update entry that matches `user_id` and `pid`
             cursor.execute(stm_update_project, update_args)
@@ -81,7 +88,8 @@ def project(projid):
     else:
         return redirect(url_for('view.login'))
 
-@update_bp.route('/subtask/<stid>', methods=['GET','POST'])
+
+@update_bp.route('/subtask/<stid>', methods=['GET', 'POST'])
 def subtask(stid):
     """
     Edit a given subtask id
@@ -92,13 +100,17 @@ def subtask(stid):
         if request.method == 'GET':
             # use the user id and subtask id to retrieve the project
             cursor = get_cursor()
-            cursor.execute(stm_select_subtask, (uid,stid))
+            cursor.execute(stm_select_subtask, (uid, stid))
             subtask = cursor.fetchone()
             session['current-project'] = subtask['pid']
             pid = subtask['pid']
 
             # pass the values to the project editor template
-            return render_template('edit-subtask.html', subtask=subtask, pid=pid, msg='')
+            return render_template(
+                'edit-subtask.html',
+                subtask=subtask,
+                pid=pid,
+                msg='')
 
         # if the user is submitting information, update the db with the modified entries
         # and update the last_modified_time val
@@ -110,11 +122,11 @@ def subtask(stid):
 
             # prep args to be updated and matched against
             update_args = [
-                    request.form['stname'],
-                    request.form['stdescription'],
-                    update_time,
-                    uid,
-                    stid]
+                request.form['stname'],
+                request.form['stdescription'],
+                update_time,
+                uid,
+                stid]
 
             # update entry that matches `user_id` and `pid`
             cursor.execute(stm_update_subtask, update_args)
@@ -124,7 +136,8 @@ def subtask(stid):
     else:
         return redirect(url_for('view.login'))
 
-@update_bp.route('/comment/<cmid>', methods=['GET','POST'])
+
+@update_bp.route('/comment/<cmid>', methods=['GET', 'POST'])
 def comment(cmid):
     """
     Edit a given comment id
@@ -136,11 +149,12 @@ def comment(cmid):
         if request.method == 'GET':
             # use the user id and comment id for retrieving comment
             cursor = get_cursor()
-            cursor.execute(stm_select_comment, (uid,cmid))
+            cursor.execute(stm_select_comment, (uid, cmid))
             comment = cursor.fetchone()
 
             # pass the values to the project editor template
-            return render_template('edit-comment.html', comment=comment, msg='')
+            return render_template(
+                'edit-comment.html', comment=comment, msg='')
 
         # if the user is submitting information, update the db with the modified entries
         # and update the last_modified_time val
@@ -150,10 +164,10 @@ def comment(cmid):
 
             # prep args to be updated and matched against
             update_args = [
-                    request.form['comment'],
-                    update_time,
-                    uid,
-                    cmid]
+                request.form['comment'],
+                update_time,
+                uid,
+                cmid]
 
             # update entry that matches `user_id` and `cmid`
             cursor.execute(stm_update_comment, update_args)

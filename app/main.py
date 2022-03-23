@@ -23,9 +23,12 @@ app.register_blueprint(settings.setting_bp)
 
 # no url args should take you home or to the login page depending on whether
 # ur logged in or not
+
+
 @app.route('/')
 def index():
     return redirect(url_for('view.home'))
+
 
 # run the server
 app.run(debug=True, host='0.0.0.0', port='443', ssl_context='adhoc')

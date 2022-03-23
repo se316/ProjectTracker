@@ -1,12 +1,16 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from datetime import datetime
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
-	stm_login, stm_projects, stm_subtasks, stm_select_project, \
-        stm_select_subtask, stm_comments, stm_new_comment
+    stm_login, stm_projects, stm_subtasks, stm_select_project, \
+    stm_select_subtask, stm_comments, stm_new_comment
 
 
+view_bp = Blueprint(
+    'view',
+    __name__,
+    url_prefix='/view',
+    template_folder='templates')
 
-view_bp = Blueprint('view', __name__, url_prefix='/view', template_folder='templates')
 
 @view_bp.route('/')
 def home():
@@ -74,7 +78,7 @@ def login():
     return render_template('index.html', msg=msg)
 
 
-@view_bp.route('/subtask/<stid>/comments', methods=['GET','POST'])
+@view_bp.route('/subtask/<stid>/comments', methods=['GET', 'POST'])
 def comments(stid):
     """
     Shows the comments for a given subtask
@@ -96,8 +100,10 @@ def comments(stid):
             if subtask:
                 if comments:
                     for cm in comments:
-                        comments[comments.index(cm)]['comment'] = marked(cm['comment'])
-                return render_template('comments.html', subtask=subtask, comments=comments)
+                        comments[comments.index(cm)]['comment'] = marked(
+                            cm['comment'])
+                return render_template(
+                    'comments.html', subtask=subtask, comments=comments)
             else:
                 return '<p>404, a subtask was not found with the id that matches your account.</p>'
         elif request.method == 'POST':
@@ -112,10 +118,11 @@ def comments(stid):
             con.connection.commit()
             # return user to the comments view
             return redirect(url_for('view.comments', stid=stid))
-            
+
             return 0
     else:
         return redirect(url_for('.login'))
+
 
 @view_bp.route('/subtask/<stid>')
 def subtask(stid):
@@ -123,7 +130,7 @@ def subtask(stid):
     Returns the individual subtask page
     """
     if 'loggedin' in session:
-	# get the user_id, subtask id is provided 
+        # get the user_id, subtask id is provided
         uid = session['id']
         cursor = get_cursor()
         cursor.execute(stm_select_subtask, (uid, stid))
@@ -138,10 +145,15 @@ def subtask(stid):
             # render markdown for subtask descriptions
             if comments:
                 for cm in comments:
-                    comments[comments.index(cm)]['comment'] = marked(cm['comment'])
+                    comments[comments.index(cm)]['comment'] = marked(
+                        cm['comment'])
             # render markdown in the description
             subtask['stdescription'] = marked(subtask['stdescription'])
-            return render_template('subtask.html', active='subtask_view', subtask=subtask, comments=comments)
+            return render_template(
+                'subtask.html',
+                active='subtask_view',
+                subtask=subtask,
+                comments=comments)
         else:
             return '<h2>404, project was not found for your account</h2>'
     else:
@@ -154,7 +166,7 @@ def project(projid):
     Returns the individual project page
     """
     if 'loggedin' in session:
-	# get the user_id, project id is provided 
+        # get the user_id, project id is provided
         uid = session['id']
         cursor = get_cursor()
         cursor.execute(stm_select_project, (uid, projid))
@@ -171,10 +183,14 @@ def project(projid):
             # render markdown for subtask descriptions
             if subtasks:
                 for st in subtasks:
-                    subtasks[subtasks.index(st)]['stdescription'] = marked(st['stdescription'])
+                    subtasks[subtasks.index(st)]['stdescription'] = marked(
+                        st['stdescription'])
             # render markdown in the description
             project['pdescription'] = marked(project['pdescription'])
-            return render_template('project.html', project=project, subtasks=subtasks)
+            return render_template(
+                'project.html',
+                project=project,
+                subtasks=subtasks)
         else:
             return '<h2>404, project was not found for your account</h2>'
     else:

@@ -2,14 +2,18 @@ from pdb import set_trace
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
-	stm_login, stm_projects, stm_select_project, stm_new_project, \
-        stm_new_subtask, stm_check_user, stm_add_user
+    stm_login, stm_projects, stm_select_project, stm_new_project, \
+    stm_new_subtask, stm_check_user, stm_add_user
 import re
 
-new_bp = Blueprint('new', __name__, url_prefix='/new', template_folder='templates')
+new_bp = Blueprint(
+    'new',
+    __name__,
+    url_prefix='/new',
+    template_folder='templates')
 
 
-@new_bp.route('/account', methods=['GET','POST'])
+@new_bp.route('/account', methods=['GET', 'POST'])
 def account():
     """
     Create a new user account
@@ -43,21 +47,26 @@ def account():
                 msg = 'Successfully registered user: {}'.format(uname)
                 return render_template('index.html', msg=msg)
 
-            # if we didn't take the else branch, return the template with the message
+            # if we didn't take the else branch, return the template with the
+            # message
         return render_template('register.html', msg=msg)
 
 
-@new_bp.route('/subtask', methods=['GET','POST'])
+@new_bp.route('/subtask', methods=['GET', 'POST'])
 def subtask():
     """
-    Subtask creation page. 
+    Subtask creation page.
     """
     if 'loggedin' in session:
         msg = ''
         current_project = session['current-project']
         title = session['project-title']
         if request.method == 'GET':
-            return render_template('new-subtask.html', msg=msg, project_title=title, current_project=current_project)
+            return render_template(
+                'new-subtask.html',
+                msg=msg,
+                project_title=title,
+                current_project=current_project)
         elif request.method == 'POST':
             print(request.form)
             stname = request.form['stname']
@@ -71,15 +80,15 @@ def subtask():
             create_time = str(datetime.now())[:19]  # YYYY-MM-DD HH:MM:SS
             # (pid, user_id, stname, stdescription, ststatus, create_time, last_modified_time, complete_time)
             entry = [
-                    session['current-project'],
-                    session['id'],
-                    stname,
-                    stdesc,
-                    ststatus,
-                    create_time,
-                    create_time,
-                    ''
-                    ]
+                session['current-project'],
+                session['id'],
+                stname,
+                stdesc,
+                ststatus,
+                create_time,
+                create_time,
+                ''
+            ]
 
             # add the new subtask to the db
             cursor = get_cursor()
@@ -87,7 +96,10 @@ def subtask():
             con.connection.commit()
 
             # return back to the project view
-            return redirect(url_for('view.project', projid = session['current-project']))
+            return redirect(
+                url_for(
+                    'view.project',
+                    projid=session['current-project']))
 
     else:
         return redirect(url_for('view.login'))

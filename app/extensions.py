@@ -19,8 +19,8 @@ stm_add_user = 'INSERT INTO accounts (username, password) VALUES (%s, %s)'
 
 # -- select all entries related to a certain id
 stm_projects = """
-SELECT * FROM projects 
- WHERE user_id = "%s" 
+SELECT * FROM projects
+ WHERE user_id = "%s"
  ORDER BY (
              CASE pstatus -- manual sort order via status
              WHEN 'In Progress' THEN 1
@@ -59,12 +59,12 @@ stm_update_user = """
     WHERE id = %s;
 """
 stm_update_project = """
-    UPDATE projects 
+    UPDATE projects
     SET pname=%s, pdescription=%s, last_modified_time=%s
     WHERE user_id = %s AND pid = %s;
     """
 stm_update_subtask = """
-    UPDATE subtasks 
+    UPDATE subtasks
     SET stname=%s, stdescription=%s, last_modified_time=%s
     WHERE user_id = %s AND stid = %s;
     """
@@ -96,9 +96,9 @@ def marked(txt):
     """
     return markdown.markdown(txt, extensions=[gfme(), 'codehilite'])
 
+
 def get_cursor():
     """
     clean way to get a cursor object
     """
     return mysql.connection.cursor(dict_cursor)
-

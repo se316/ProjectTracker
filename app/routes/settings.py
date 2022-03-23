@@ -1,18 +1,25 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
-        stm_update_user, stm_check_user
+    stm_update_user, stm_check_user
 import re
 
 
-setting_bp = Blueprint('settings', __name__, url_prefix='/settings', template_folder='templates')
+setting_bp = Blueprint(
+    'settings',
+    __name__,
+    url_prefix='/settings',
+    template_folder='templates')
+
+
 @setting_bp.route('/')
 def page():
     if 'loggedin' in session:
         return render_template('settings.html')
-    else: 
+    else:
         return redirect(url_for('view.home'))
 
-@setting_bp.route('/username', methods=['GET','POST'])
+
+@setting_bp.route('/username', methods=['GET', 'POST'])
 def username():
     if 'loggedin' in session:
 
@@ -36,12 +43,16 @@ def username():
                 # if username doesn't meet requirements, don't update
                 msg = 'Username must be letters and numbers only.'
             else:
-                # if account did not exist and the username is okay, update the username and your session variable
+                # if account did not exist and the username is okay, update the
+                # username and your session variable
                 cur.execute(stm_update_user, (uname, uid))
                 msg = 'Account updated successfully.'
                 session['username'] = uname
 
-            return render_template('settings/username.html', username=session['username'], msg=msg)
+            return render_template(
+                'settings/username.html',
+                username=session['username'],
+                msg=msg)
 
     else:
         return redirect(url_for('view.home'))
