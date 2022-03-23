@@ -92,7 +92,7 @@ a:hover {
 	text-decoration: none;
 }
 
-#subtask_view ul {
+#subtask_view > ul {
 	list-style-type: none;
 	padding-left: 5px;
 	margin: 0;

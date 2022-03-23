@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from routes import view, delete, edit, new
+from routes import view, delete, edit, new, settings
 from extensions import mysql as con
 from os import getenv
 
@@ -19,6 +19,7 @@ app.register_blueprint(view.view_bp)
 app.register_blueprint(delete.delete_bp)
 app.register_blueprint(edit.update_bp)
 app.register_blueprint(new.new_bp)
+app.register_blueprint(settings.setting_bp)
 
 # no url args should take you home or to the login page depending on whether
 # ur logged in or not

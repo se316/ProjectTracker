@@ -53,6 +53,11 @@ stm_select_subtask = 'SELECT * FROM subtasks WHERE user_id = %s AND stid = %s ;'
 stm_select_comment = 'SELECT * FROM comments WHERE user_id = %s AND cmid = %s ;'
 # -- update existing entries by id, need name description and last modded times filtered
 #    by userid and level id (pid, stid, cmid)
+stm_update_user = """
+    UPDATE accounts
+    SET username=%s
+    WHERE id = %s;
+"""
 stm_update_project = """
     UPDATE projects 
     SET pname=%s, pdescription=%s, last_modified_time=%s

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+<div class='entry-item'>
+	<div class='settings'>
+		<div class='settings-list'>
+			<a href="{{ url_for('settings.username') }}" class='setting-desc'>Edit Username</a>
+			<a href="#" class='setting-desc'>Edit Password</a>
+			<a href="#" class='setting-desc'>Delete Account</a>
+		</div> <!-- List of settings are linked to here -->
+		<div class='settings-display'>
+			{% block setting %}{% endblock %}
+		</div> <!-- This is where your individual setting templates will be displayed -->
+	</div>
+</div>
+{% endblock %}

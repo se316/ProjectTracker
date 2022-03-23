@@ -34,9 +34,9 @@
 	<div id="cm{{comment['cmid']}}" class="button-row">
 		<div class='left'>
 			{% if comment['create_time'] != comment['last_modified_time'] %}
-			<p class='small-txt'>last modified: {{comment['last_modified_time']}}<p>
+			<p class='small-txt'>{{ session['username'] }} last modified: {{comment['last_modified_time']}}, created: {{comment['create_time']}}<p>
 			{% else %}
-			<p class='small-txt'>commented: {{comment['create_time'] }}</p>
+			<p class='small-txt'>{{ session['username'] }} commented: {{comment['create_time'] }}</p>
 			{% endif %}
 		</div>
 		<div class='right'>

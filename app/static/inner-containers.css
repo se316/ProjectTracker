@@ -222,4 +222,44 @@ div.entry-item div.button-row a {
 	justify-content: center;
 	border-radius: 5px;
 }
-
+.entry-item > .settings {
+	display: flex;
+	align-items: flex-start;
+}
+.entry-item > .settings > .settings-list {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.entry-item > .settings > .settings-list > .setting-desc {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	text-decoration: none;
+	height: 40px;
+	width: 100%;
+	font-weight: bold;
+}
+.entry-item > .settings > .settings-display {
+	width: 800px;
+	min-height: 300px;
+	display: inline-flex;
+	padding-left: 15px;
+	justify-content: flex-start;
+	align-items: flex-start;
+	border-left: 2px dashed #757a79;
+}
+.save-discard {
+	margin-top: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+.save-discard button {
+	width: 48%;
+}
+.save-discard button:hover {
+	cursor: pointer;
+}

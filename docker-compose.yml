@@ -20,8 +20,8 @@ services:
                         context: ./app
                 image: project-app:latest
                 container_name: project-app
-                depends_on:
-                        - mysql-db
+                #depends_on:
+                #        - mysql-db
                 env_file:
                         - app/.env
                 ports:
