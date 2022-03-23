@@ -3,6 +3,7 @@
 var active_projects = ['In Progress','Pending','Review'];
 var inactive_projects = ['Not Started'];
 var all_projects = ['All'];
+var abandoned_projects = ['Abandoned'];
 var completed_projects = ['Complete'];
 
 function entry_filter(status_filters) {
@@ -68,7 +69,11 @@ function update_icon(icon, status) {
             icon.className = 'current-icon fa-solid fa-circle-check';
             icon.style.background = '#a2c11c';
             icon.style.color = light;
-        }
+        } else if (status == 'Abandoned') {
+	    icon.className = 'current-icon fa-solid fa-square-xmark';
+	    icon.style.background = '#eb2632';
+	    icon.style.color = light;
+	}
     }
 
 // update a project or subtask status with fetch

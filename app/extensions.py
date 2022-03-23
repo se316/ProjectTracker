@@ -28,6 +28,7 @@ SELECT * FROM projects
              WHEN 'Review' THEN 3
              WHEN 'Not Started' THEN 4
              WHEN 'Complete' THEN 5
+             WHEN 'Abandoned' THEN 6
              END
          ),  last_modified_time DESC;
 """
