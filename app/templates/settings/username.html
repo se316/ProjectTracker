@@ -9,9 +9,9 @@
 			<button type='button' onclick='window.location="{{url_for('settings.page')}}"'>Cancel</button>
 			<button type='submit'>Save</button>
 		</div>
-		{% if msg %}
-		<p class='msg'>{{ msg }}</p>
-		{% endif %}
 	</form>
 </div>
+	{% if msg %}
+	<p class='msg'>{{ msg }}</p>
+	{% endif %}
 {% endblock %}

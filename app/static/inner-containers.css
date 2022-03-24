@@ -250,6 +250,7 @@ div.entry-item div.button-row a {
 	padding-left: 15px;
 	justify-content: flex-start;
 	align-items: flex-start;
+	flex-direction: column;
 	border-left: 2px dashed #757a79;
 }
 .save-discard {

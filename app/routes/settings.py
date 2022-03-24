@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
     stm_update_user, stm_check_user
 import re
+import logging
+logging.basicConfig(level='INFO')
 
 
 setting_bp = Blueprint(
@@ -39,13 +41,14 @@ def username():
             if account:
                 # if account exists, don't update
                 msg = 'Account already exists for this username.'
-            elif not re.match(r'[A-Za-z0-9]+', uname):
+            elif not re.match(r'[A-Za-z0-9_]*$', uname):
                 # if username doesn't meet requirements, don't update
-                msg = 'Username must be letters and numbers only.'
+                msg = 'Username must be letters, numbers and underscores only.'
             else:
                 # if account did not exist and the username is okay, update the
                 # username and your session variable
                 cur.execute(stm_update_user, (uname, uid))
+                con.connection.commit()
                 msg = 'Account updated successfully.'
                 session['username'] = uname
 

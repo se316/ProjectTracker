@@ -1,10 +1,10 @@
 pyopenssl
-Flask-Markdown==0.3
-Flask-MySQLdb==1.0.1
-Flask==1.1.2
-itsdangerous==2.0.1
-Pygments==2.11.2
-bs4==0.0.1
-mysql-connector-python==8.0.28
-py-gfm==1.0.2
+Flask-Markdown
+Flask-MySQLdb
+Flask
+itsdangerous
+Pygments
+bs4
+mysql-connector-python
+py-gfm
 

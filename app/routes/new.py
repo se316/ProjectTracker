@@ -36,8 +36,8 @@ def account():
             # if account exists, show error and validation checks
             if account:
                 msg = 'Account already exists for this username.'
-            elif not re.match(r'[A-Za-z0-9]+', uname):
-                msg = 'Username must be letters and numbers only.'
+            elif not re.match(r'[A-Za-z0-9_]*$', uname):
+                msg = 'Username must be letters, numbers and underscores only.'
             elif not uname or not pword:
                 msg = 'Please fill out both fields in the form.'
             else:
