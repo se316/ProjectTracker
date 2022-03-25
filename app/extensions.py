@@ -26,9 +26,12 @@ SELECT * FROM projects
              WHEN 'In Progress' THEN 1
              WHEN 'Pending' THEN 2
              WHEN 'Review' THEN 3
-             WHEN 'Not Started' THEN 4
-             WHEN 'Complete' THEN 5
-             WHEN 'Abandoned' THEN 6
+             WHEN 'Researching' THEN 4
+             WHEN 'Not Started' THEN 5
+             WHEN 'Backlog' THEN 6
+             WHEN 'Complete' THEN 7
+             WHEN 'Closed' THEN 8
+             WHEN 'Blocked' THEN 9
              END
          ),  last_modified_time DESC;
 """

@@ -12,6 +12,25 @@ view_bp = Blueprint(
     template_folder='templates')
 
 
+@view_bp.context_processor
+def status_list():
+    """
+    used to return a list of statuses, accessible at the template level
+    """
+    statuses = [
+    'Not Started',
+    'Pending',
+    'In Progress',
+    'Blocked',
+    'Researching',
+    'Review',
+    'Complete',
+    'Closed',
+    'Backlog'
+    ]
+    return {'status_list' : statuses}
+
+
 @view_bp.route('/')
 def home():
     """

@@ -13,8 +13,8 @@
 			<i class="fa-solid fa-box"></i>Inactive</button>
 		<button type='button' onclick='entry_filter(completed_projects)' title='Show projects that are Complete.'>
 			<i class="fa-solid fa-circle-check"></i>Complete</button>
-		<button type='button' onclick='entry_filter(abandoned_projects)' title='Show projects that are Abandoned.'>
-			<i class="fa-solid fa-square-xmark"></i>Abandoned</button>
+		<button type='button' onclick='entry_filter(researching_projects)' title='Show projects that require more research.'>
+			<i class="fa-solid fa-chart-column"></i>Researching</button>
 		<button type='button' onclick='entry_filter(all_projects)' title='Show all projects.'>
 			All</button>
 </div>
@@ -53,12 +53,9 @@
                               method='post'
                               onchange='update_status("project",{{project["pid"]}}, "status-{{project['pid']}}")'>
                                 <select name="status" onchange="update_status_icons()" class='current-status'>
-                                        <option value="Not Started">Not Started</option>
-                                        <option value='Pending'>Pending</option>
-                                        <option value="In Progress">In Progress</option>
-                                        <option value="Review">Review</option>
-                                        <option value="Complete">Complete</option>
-                                        <option value="Abandoned">Abandoned</option>
+					{% for status in status_list %}
+					<option value="{{status}}">{{status}}</option>
+					{% endfor %}
                                         <option value="none" selected disabled hidden>{{project['pstatus']}}</option>
                                 </select>
                         </form>

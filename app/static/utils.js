@@ -1,10 +1,10 @@
 // home page filter buttons
 
 var active_projects = ['In Progress','Pending','Review'];
-var inactive_projects = ['Not Started'];
+var inactive_projects = ['Not Started','Backlog'];
 var all_projects = ['All'];
-var abandoned_projects = ['Abandoned'];
-var completed_projects = ['Complete'];
+var researching_projects = ['Researching'];
+var completed_projects = ['Complete','Closed','Blocked'];
 
 function entry_filter(status_filters) {
     var entries = document.getElementsByClassName('entry-item');
@@ -49,6 +49,8 @@ function update_icon(icon, status) {
     // set the appropriate icon based on status
 	var dark = '#393e46';
 	var light = '#fffdf6';
+	var purple = '#680747';
+	var pink = '#f48db4';
         if (status == 'Not Started') {
             icon.className = 'current-icon fa-solid fa-box';
 	    icon.style.background = '#929aab';
@@ -69,9 +71,21 @@ function update_icon(icon, status) {
             icon.className = 'current-icon fa-solid fa-circle-check';
             icon.style.background = '#a2c11c';
             icon.style.color = light;
-        } else if (status == 'Abandoned') {
+        } else if (status == 'Blocked') {
 	    icon.className = 'current-icon fa-solid fa-square-xmark';
 	    icon.style.background = '#eb2632';
+	    icon.style.color = light;
+        } else if (status == 'Closed') {
+	    icon.className = 'current-icon fa-solid fa-square-xmark';
+	    icon.style.background = '#393e46';
+	    icon.style.color = dark;
+        } else if (status == 'Researching') {
+	    icon.className = 'current-icon fa-solid fa-chart-column';
+	    icon.style.background = purple;
+	    icon.style.color = pink;
+        } else if (status == 'Backlog') {
+	    icon.className = 'current-icon fa-solid fa-clipboard';
+	    icon.style.background = '#393e46';
 	    icon.style.color = light;
 	}
     }
