@@ -71,6 +71,20 @@
 </p>
 {% endif %}
 	<script>
-		window.onload = () => update_status_icons();
+		window.onload = function () {
+			update_status_icons();
+			// decide which filter to apply at home
+			{% if session['user-preferences']['home-pg-filter'] == 'all' %}
+			entry_filter(all_projects);
+			{% elif session['user-preferences']['home-pg-filter'] == 'active' %}
+			entry_filter(active_projects);
+			{% elif session['user-preferences']['home-pg-filter'] == 'inactive' %}
+			entry_filter(inactive_projects);
+			{% elif session['user-preferences']['home-pg-filter'] == 'researching' %}
+			entry_filter(researching_projects);
+			{% elif session['user-preferences']['home-pg-filter'] == 'complete' %}
+			entry_filter(completed_projects);
+			{% endif %}
+		}
 	</script>
 {% endblock %}

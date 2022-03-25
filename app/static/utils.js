@@ -78,7 +78,7 @@ function update_icon(icon, status) {
         } else if (status == 'Closed') {
 	    icon.className = 'current-icon fa-solid fa-square-xmark';
 	    icon.style.background = '#393e46';
-	    icon.style.color = dark;
+	    icon.style.color = light;
         } else if (status == 'Researching') {
 	    icon.className = 'current-icon fa-solid fa-chart-column';
 	    icon.style.background = purple;

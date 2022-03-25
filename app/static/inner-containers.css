@@ -235,9 +235,9 @@ div.entry-item div.button-row a {
 }
 .entry-item > .settings > .settings-list > .setting-desc {
 	display: inline-flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	text-align: left;
+	margin-left: 15px;
 	text-decoration: none;
 	height: 40px;
 	width: 100%;
@@ -257,6 +257,9 @@ div.entry-item div.button-row a {
 	margin-top: 5px;
 	display: flex;
 	justify-content: space-between;
+}
+.settings-form .row {
+	display: flex;
 }
 .save-discard button {
 	width: 48%;

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
+from json import loads
 from datetime import datetime
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
     stm_login, stm_projects, stm_subtasks, stm_select_project, \
@@ -87,6 +88,7 @@ def login():
             session['username'] = account['username']
             session['current-project'] = None
             session['current-subtask'] = None
+            session['user-preferences'] = loads(account['settings'])
             # redirect to the home page
             return redirect(url_for('.home'))
 

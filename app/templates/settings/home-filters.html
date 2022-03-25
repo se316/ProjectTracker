@@ -1,0 +1,32 @@
+{% extends "settings.html" %}
+{% block setting %}
+<div class='settings-form'>
+	<p>Choose the default filter to apply on the home page</p>
+	<form action="{{ url_for('settings.home_filters') }}" method="post" id="home-filters">
+	<div class='row'>
+		<label for="all">
+			<input type="radio" name="home-pg-filter" value="all" id="all">
+			All</label><br>
+		<label for="active">
+			<input type="radio" name="home-pg-filter" value="active" id="active">
+			Active</label><br>
+		<label for="inactive">
+			<input type="radio" name="home-pg-filter" value="inactive" id="inactive">
+			Inactive</label> 
+		<label for="researching">
+			<input type="radio" name="home-pg-filter" value="researching" id="researching">
+			Researching</label> 
+		<label for="inactive">
+			<input type="radio" name="home-pg-filter" value="complete" id="complete">
+			Complete</label>
+	</div>
+	<div class='save-discard'>
+		<button type='button' onclick='window.location="{{url_for('settings.page')}}"'>Cancel</button>
+		<button type='submit'>Save</button>
+	</div>
+	</form>
+</div>
+        {% if msg %}
+        <p class='msg'>{{ msg }}</p>
+        {% endif %}
+{% endblock %}

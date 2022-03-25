@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
+from json import dumps, loads
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
-    stm_update_user, stm_check_user
+    stm_update_user, stm_check_user, stm_update_user_preferences
 import re
 
 
@@ -55,5 +56,31 @@ def username():
                 username=session['username'],
                 msg=msg)
 
+    else:
+        return redirect(url_for('view.home'))
+
+@setting_bp.route('/home-filters', methods=['GET','POST'])
+def home_filters():
+    if 'loggedin' in session:
+        if request.method == 'GET':
+            return render_template('settings/home-filters.html')
+        elif request.method == 'POST':
+            # get the specified setting 
+            pref = request.form['home-pg-filter']
+            usettings = session['user-preferences']
+            usettings['home-pg-filter'] = pref
+            new_settings = dumps(usettings)
+
+            # save the new settings
+            cur = get_cursor()
+            arg = (new_settings, session['id'])
+            cur.execute(stm_update_user_preferences, arg)
+            cur.connection.commit()
+
+            # update the session and let the user know the update succeeded
+            msg = 'Home page preference updated successfully.'
+            session['user-preferences'] = usettings
+            return render_template('settings/home-filters.html', msg=msg)
+            
     else:
         return redirect(url_for('view.home'))

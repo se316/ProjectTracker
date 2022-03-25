@@ -1,9 +1,10 @@
 from pdb import set_trace
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for, session
+from json import dumps
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
     stm_login, stm_projects, stm_select_project, stm_new_project, \
-    stm_new_subtask, stm_check_user, stm_add_user
+    stm_new_subtask, stm_check_user, stm_add_user, default_settings
 import re
 
 new_bp = Blueprint(
@@ -42,7 +43,11 @@ def account():
                 msg = 'Please fill out both fields in the form.'
             else:
                 # account does not exist and data is valid at this point
-                cursor.execute(stm_add_user, (uname, pword))
+                cursor.execute(
+                        stm_add_user, (
+                            uname, pword, dumps(default_settings)
+                            )
+                        )
                 con.connection.commit()
                 msg = 'Successfully registered user: {}'.format(uname)
                 return render_template('index.html', msg=msg)
