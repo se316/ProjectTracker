@@ -24,6 +24,7 @@ services:
                 #        - mysql-db
                 env_file:
                         - app/.env
+                        - mysqldb/.env
                 ports:
                         - "443:443"
                 volumes:

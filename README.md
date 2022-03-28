@@ -1,61 +1,79 @@
-## Overview
+## ProjectTracker
 
-What was I doing? Where did I leave off? What do I need to do next? The Project Tracker was created to help answer these questions. When it comes to project work, answering each question can be a time and energy consuming task depending on the complexity of things. It's much better to have a tool one can use to have those questions answered for them at a glance, making it easier to step away from or jump back into any given project at any given time. 
+Project Tracker is a locally hosted web tool built for assisting with project management.
 
-## How does Project Tracker work? 
+## Description
 
-There are 3 levels to managing a given project in the Project Tracker:
+Project Tracker is made up of 2 containers and launched with docker-compose. A flask web server handles user interactions and a mysql database stores user accounts, user settings as a json and created projects. Projects themselves can be broken up into Subtasks and Status Management is available at both levels with visual feedback like different colored icons for each status. 
 
-| Level | Purpose
+The main purpose and benefit to using Project Tracker is to be able to answer with just a simple glance: 
+
+- What am I doing? 
+- What do I need to do to get this done? 
+- Where did I leave off? 
+- What do I need to do next? 
+
+Each of these questions can involve a lot of reading, time and mental effort without having an effective means to track, and letting the tool do all the work in that regard allows you to focus all your mental energy on getting a given task done. 
+
+## How to Install and Run ProjectTracker
+
+To install project tracker you need to:
+
+- download and install [git](https://git-scm.com/downloads).
+- download and install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/).
+- download ProjectTracker by running ```git clone https://github.com/se316/ProjectTracker```.
+- build the package the first time by running ```docker-compose build``` at the package's root directory.
+
+To run Project Tracker:
+
+- after building it the first time, run PT with ```docker-compose up```. Append the command with ```-d``` to run it in the background.
+- once it's up and running, navigate to https://localhost in a browser to be taken to the login/register page.
+- when you want to stop ProjectTracker, open a terminal in the project's root directory and run ```docker-compose stop```
+
+## How to Use Project Tracker
+
+When navigating to ProjectTracker for the first time, you'll need to create an account to login with. Using accounts makes it so multiple people on the local network can track their work separately. When logging in for the first time, a new project can be created using the New Project button in the top right corner. After creating and describing a project, you're able to go to its individual project page and create Subtasks for it in the Subtasks tab. On the individual subtask page, you're able to see the description in one tab and add comments in the other. Each subtask has a list of statuses they can be marked as, and when all subtasks are complete, the project can be marked as complete. There's nothing to stop you from changing the project status without marking all the subtasks as complete, how you use project tracker is up to you and a list of terms, statuses and references will be provided below. A final note on usage is all descriptions and comments can render markdown for greater organization.
+
+## Terms and References
+
+This section is meant to briefly discuss various aspects of the Project Tracker
+
+|Level | What it's for
 |:- |:-
-| Project | The project level is a high level "What do I want to do" kind of document. It is used to distinctly separate projects that have their own different tasks that need to be completed and serve different purposes. 
-| Subtask | Every project will have its own subtasks. If projects are the answer to "What do I want to do?", subtasks are the answer to "What do I need to do to get this done?". Typically, there are many different things to do or consider when working on a given project and subtasks help keep those to-do items organized. 
-| Comments | When working through a subtask, one should help themselves by leaving comments of what they've done. Doing this allows one to easily step in and out of a particular project/subtask. When coming back, comments are the answer to "Where did I leave off?", and if you tell yourself what the next step should be it'll also be a fast way to see what needs to be done next. 
+| Project | Projects are functionally just tracking tickets. It's supposed to be the single entry point to all the work that revolves around getting that project done. Their descriptions are visible on the home page and a good project overview should help guide the project on a high level.
+| Subtask | Subtasks always have a parent Project they come from. If Projects are considered what's being tracked on a high level, Subtasks would be the actual work that needs to be done for your Project. Keeping these well organized makes jumping in and out of a Project straight forward and helps break something big into small quick to work on pieces. 
+| Comments | Comments can be left on the Subtask level. If an individual Subtask can be viewed as the task at hand, comments are the way you keep track of your work while working towards completion. If you're coming back to something, comments are a great way to see exactly what you've done so far and where you've left off at a glance. If you like leaving a note telling yourself what to do next, this makes it even easier to know what to do at a glance. 
 
-Using those 3 levels together helps keep things organized while reducing how much mental effort it takes to work through a project. To help assist with the state of things, Project Tracker also has a status management mechanism. Projects and Subtasks can be marked as one of five different statuses:
+**Statuses**: There are multiple statuses available that can be broken down into 3 categories: active, inactive, complete. A list of statuses and their usage is available below. "Projects" can be swapped out with "Subtasks" because their status management works the same way. 
 
-- Not Started
-- Pending
-- In Progress
-- Review
-- Complete
+**Active** - these are projects you are actively working on. 
 
-Each status has its own corresponding color and icon to make differentiating between things even easier. To get started with project tracker, go to ```https://<"localhost" or ip address it's running on>``` and it'll take you to the login/register page. Make yourself an account then you're ready to login and get started. 
+|Status|Usage
+|:-|:-
+|In Progress| This is used for the project you are literally actively working on.
+|Pending | You are working on the project, but have paused your work on it for whatever reason. It is going to be worked on after completing what's In Progress
+|Review | You have finished working on the Project and are wrapping things up. Testing, code cleanup, and collecting final thoughts are done at this point before officially marking it as complete and moving on. 
+|Researching | You are working on a Project but need to do more reading or experimentation before being able to proceed. 
 
-## Is the data used in registration used or shared with anyone?
+**Inactive** - these are projects you have not started working on yet.
 
-No, only a username and password are asked for on the registration page and their only purposes are to:
+|Status|Usage
+|:-|:-
+| Not Started | These are projects you've created and plan on doing soon but have not been started. It is the default status for every created Project.
+| Backlog | These are projects you want to keep on your radar and do at some point but they are low priority. 
 
-- Help you login to ProjectTracker.
-- Separate your project work from anyone elses (if you wanted to share it as a resource on your network).
-- Give you a user id that is used to grab just your work from the database.
+**Complete** - these are the statuses used to close out your Project.
 
-## Installation
+|Status|Usage
+|:-|:-
+|Complete | You have successfully completed the Project.
+|Closed | You have willingly closed out the Project without completing the work. 
+|Blocked | You are unable to complete the Project for reasons beyond your control. 
 
-In order to install this you'll need to make sure you have [Docker](https://docs.docker.com/get-docker/) and [Git](https://git-scm.com/downloads) installed as a prerequisite. If those are installed, then this package can be downloaded via
+## Home Page Filters
 
-```
-git clone https://github.com/se316/ProjectTracker.git
-```
+After projects are created, the default behavior of the home page is to list all projects in order of status priority (active > inactive > complete) then last modified time. There are filter buttons that allow you to only see your active, inactive, complete or researching Projects, and there is a Home Page Filter preference that can be set in the Settings so whenever you navigate to the home page the specified filter will automatically be applied. 
 
-## Starting the App
+## MySQL DB Credentials
 
-After cloning the package onto your host, cd into the project's root directory "ProjectTracker" and use the following to start the servers
-
-```
-# do this once so it's faster to start in the future
-docker-compose --build
-
-# this is how to start the app, add " -d" to run it in the background
-docker-compose up
-
-# these are two ways to stop the app, you can also Ctrl+C if you only have one terminal open
-docker-compose stop
-docker-compose down
-```
-
-Once you see that the web server is listening on port 443, in a browser go to ```https://localhost``` to be taken to the ProjectTracker's home page. The current version uses a self signed cert, so accept the risk and continue to the site. This will be replaced with a trusted certificate in a future update.
-
-## What are the different servers launched in this package? 
-
-There are two nodes that get launched. One is a mysql server that will host the database required to make everything work, the second contains the web server you'll be logging into and interacting with. 
+MySQL and the App get their credentials from the MySQL container's environment file. To change the default username/passwords to the database, modify the file located at ```ProjectTracker/mysqldb/.env```.
