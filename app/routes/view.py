@@ -3,7 +3,7 @@ from json import loads
 from datetime import datetime
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
     stm_login, stm_projects, stm_subtasks, stm_select_project, \
-    stm_select_subtask, stm_comments, stm_new_comment
+    stm_select_subtask, stm_comments, stm_new_comment, stm_all_subtasks
 
 
 view_bp = Blueprint(
@@ -97,6 +97,27 @@ def login():
             msg = 'Incorrect username/password was provided.'
 
     return render_template('index.html', msg=msg)
+
+
+@view_bp.route('/profile')
+def profile():
+    if 'loggedin' in session:
+        # get id for retrieving projects and subtasks
+        uid = session['id']
+        cur = get_cursor()
+
+        # get projects
+        cur.execute(stm_projects, (uid,))
+        projects = cur.fetchall()
+
+        # get subtasks
+        cur.execute(stm_all_subtasks, (uid,))
+        subtasks = cur.fetchall()
+
+        # pass these to the profile template
+        return render_template('profile.html', projects=projects, subtasks=subtasks)
+    else:
+        return redirect(url_for('view.login'))
 
 
 @view_bp.route('/subtask/<stid>/comments', methods=['GET', 'POST'])

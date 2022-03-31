@@ -166,7 +166,7 @@ div.entry-item div.button-row a {
 }
 .content > .filter-row > button {
 	margin-left: 5px;
-	width: 120px;
+	width: 125px;
 	height: 30px;
 	border-radius: 0;
 	box-shadow: none;
@@ -265,5 +265,22 @@ div.entry-item div.button-row a {
 	width: 48%;
 }
 .save-discard button:hover {
+	cursor: pointer;
+}
+#project-tree > ul li i {
+	width: 30px;
+	height: 20px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+}
+#project-tree li {
+	list-style: none;
+}
+#project-tree h1 {
+	text-align: left;
+}
+#project-tree h1:hover {
 	cursor: pointer;
 }

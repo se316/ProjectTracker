@@ -41,6 +41,7 @@ SELECT * FROM projects
          ),  last_modified_time DESC;
 """
 stm_subtasks = 'SELECT * FROM subtasks WHERE user_id = "%s" AND pid=%s ORDER BY create_time;'
+stm_all_subtasks = 'SELECT * FROM subtasks WHERE user_id = "%s" ORDER BY create_time;'
 stm_comments = 'SELECT * FROM comments WHERE user_id = "%s" AND stid=%s ORDER BY create_time DESC;'
 # -- add new entries at various levels
 stm_new_project = """

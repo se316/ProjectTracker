@@ -15,7 +15,7 @@
 			<div>
 				<h1><i class="fa-solid fa-screwdriver-wrench"></i>Project Tracker</h1>
 				<a href="{{ url_for('view.home') }}"><i class="fas fa-home"></i>Home</a>
-				<a href="#"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="{{ url_for('view.profile') }}"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="{{ url_for('settings.page') }}"><i class="fa-solid fa-gear"></i>Settings</a>
 				<a href="{{ url_for('view.logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
 				<a onclick='markdown_help()' title="What is Markdown?"><i class="fa-solid fa-circle-question"></i></a>

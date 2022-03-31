@@ -43,6 +43,13 @@ function update_status_icons () {
 	}
 }
 
+// used as a standalone icon loader, requires element id
+function update_element_icon(id, status) {
+	var elem = document.getElementById(id);
+	update_icon(elem, status);
+}
+
+
 // control structure for setting the appropriate class names
 
 function update_icon(icon, status) {
@@ -190,4 +197,19 @@ function convert_md(txt_id) {
 
 	// display current text rendered into the preview section
 	target.innerHTML = md.render(txt_in.value);
+}
+
+// toggle the project tree visibility on the profile page
+
+function ptree_toggle () {
+	var proj_list = document.getElementById('project-tree').children[1];
+	var toggle = document.getElementById('project-tree-toggle');
+
+	if (proj_list.style.display == 'none') {
+		proj_list.style.display = 'block';
+		toggle.className = 'fa-solid fa-caret-up';
+	} else {
+		proj_list.style.display = 'none';
+		toggle.className = 'fa-solid fa-caret-down';
+	}
 }

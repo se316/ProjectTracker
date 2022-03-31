@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+<div class='entry-item'>
+	<div id='project-tree'>
+		<h1 class='title' onclick='ptree_toggle();' title='Show an overview of all projects and subtasks'>
+			Project Tree 
+			<i id='project-tree-toggle' class='fa-solid fa-caret-down'></i>
+		</h1>
+		{% if projects %}
+		<ul style='display: none'>
+		{% for project in projects %}
+			<li>
+				<i id="proj-icon-{{project['pid']}}"></i>
+				<a href='{{ url_for('view.project', projid=project['pid'])}}'>
+					{{ project['pname'] }}
+				</a>
+			</li>
+			<ul>
+			{% if subtasks %}
+			{% for subtask in subtasks %}
+				{% if subtask['pid'] == project['pid'] %}
+				<li>
+					<i id="st-icon-{{subtask['stid']}}"></i>
+					<a href="{{ url_for('view.subtask', stid=subtask['stid']) }}">
+						{{ subtask['stname'] }}
+					</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+			{% else %}
+			<li> No subtasks </li>
+			{% endif %}
+			</ul>
+		{% endfor %}
+		</ul>
+		{% else %}
+		<p>No projects created yet</p>
+		{% endif %}
+</div>
+	<script src="{{ url_for('static', filename='utils.js') }}"></script>
+	<script>
+	{% if projects %}
+		{% for project in projects %}
+		try {
+			update_element_icon('proj-icon-{{project['pid']}}', '{{project['pstatus']}}');
+		} catch (e) {
+			(console.error || console.log).call(console, e.stack || e);
+		}
+		{% endfor %}
+	{% endif %}
+	{% if subtasks %}
+		{% for subtask in subtasks %}
+		try {
+			update_element_icon('st-icon-{{subtask['stid']}}', '{{subtask['ststatus']}}');
+		} catch (e) {
+			(console.error || console.log).call(console, e.stack || e);
+		}		
+		{% endfor %}
+	{% endif %}
+	</script>
+{% endblock %}
