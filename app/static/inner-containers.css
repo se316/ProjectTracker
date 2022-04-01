@@ -294,6 +294,11 @@ div.entry-item div.button-row a {
 	width: 100px;
 	height: 30px;
 	display: inline-flex;
-	justify-content: flex-start;
 	align-items: center;
+}
+#stats-table th {
+	justify-content: flex-end;
+}
+#stats-table td {
+	justify-content: center;
 }
