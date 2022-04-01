@@ -27,7 +27,7 @@ To install project tracker you need to:
 To run Project Tracker:
 
 - after building it the first time, run PT with ```docker-compose up```. Append the command with ```-d``` to run it in the background.
-- once it's up and running, navigate to https://localhost in a browser to be taken to the login/register page.
+- once it's up and running, navigate to https://localhost in a browser to be taken to the login/register page. Firefox recommended for best results.
 - when you want to stop ProjectTracker, open a terminal in the project's root directory and run ```docker-compose stop```
 
 ## How to Use Project Tracker
@@ -73,6 +73,17 @@ This section is meant to briefly discuss various aspects of the Project Tracker
 ## Home Page Filters
 
 After projects are created, the default behavior of the home page is to list all projects in order of status priority (active > inactive > complete) then last modified time. There are filter buttons that allow you to only see your active, inactive, complete or researching Projects, and there is a Home Page Filter preference that can be set in the Settings so whenever you navigate to the home page the specified filter will automatically be applied. 
+
+
+## Profile Page
+
+The profile page contains various information about your projects and subtasks. There are different features available on the profile page and they're summarized below:
+
+* **Project Tree** - the project tree contains a breakdown of all your projects and their respective subtasks and statuses in a nested list format. Subtasks are nested within their projects.
+* **Open Projects** [coming soon] - this section lists all of your open projects.
+* **Open SUbtasks** [coming soon] - this section lists all of your open subtasks.
+* **Project/Subtask Stats** [coming soon] - various counts regarding projects, subtasks and their respective statuses.
+
 
 ## MySQL DB Credentials
 

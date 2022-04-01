@@ -178,16 +178,6 @@ function show_hide(div_name) {
 	}
 }
 
-// open docs and explanation for what markdown is and which is used
-
-function markdown_help() {
-	var sites = ['https://github.github.com/gfm/','https://becomeawritertoday.com/what-is-markdown/#What_Is_Markdown'];
-
-	for (i=0; i<sites.length; i++) {
-		window.open(sites[i], '_blank');
-	}
-}
-
 // func to render markdown. Make this flexible so it works beyond the project lvl
 
 function convert_md(txt_id) {
