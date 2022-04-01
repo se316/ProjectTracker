@@ -27,7 +27,7 @@ To install project tracker you need to:
 To run Project Tracker:
 
 - after building it the first time, run PT with ```docker-compose up```. Append the command with ```-d``` to run it in the background.
-- once it's up and running, navigate to https://localhost in a browser to be taken to the login/register page. Firefox recommended for best results.
+- once it's up and running, navigate to https://localhost in a browser to be taken to the login/register page.
 - when you want to stop ProjectTracker, open a terminal in the project's root directory and run ```docker-compose stop```
 
 ## How to Use Project Tracker

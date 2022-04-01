@@ -1,0 +1,547 @@
+/* This stylesheet is for elements displayed within the body and main content divs */
+
+
+/* navigation bar inner elements */
+.navtop div {
+        display: flex;
+	align-items: center;
+	justify-content: flex-end;
+        margin: 0 auto;
+        width: 1000px;
+	height: 100%;
+}
+.navtop div .create-button {
+        background: #ffc93c;
+        color: #323232;
+}
+
+.navtop div .create-button:hover {
+        background: #ff6f3c;
+        color: #eaebed;
+}
+
+
+.small-form form  {
+	display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.small-form form label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        background-color: #3274d6;
+        color: #ffffff;
+}
+
+.small-form input[type="submit"] {
+        width: 360px;
+        padding: 15px;
+        margin-top: 20px;
+        background-color: #3274d6;
+        border: 0;
+        cursor: pointer;
+        font-weight: bold;
+        color: #ffffff;
+        transition: background-color 0.2s;
+}
+
+.small-form input[type="submit"]:hover {
+        background-color: #2868c7;
+        transition: background-color 0.2s;
+}
+
+.small-form form input[type="password"], .small-form form input[type="text"] {
+        width: 310px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+}
+.large-form input, .large-form textarea {
+	width: 100%;
+	border-radius: 4px;
+}
+.large-form input, .large-form .child-button{ 
+	height: 30px;
+	font-size: 20px;
+}
+.large-form textarea {
+	height: 400px;
+	resize: none;
+}
+/* the div (row) save/discard buttons are stored in for a form */
+.button-row {
+	width: 100%;
+	padding-left:0;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
+
+.button-row .left {
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 50%;
+}
+
+div.button-row div.top {
+	text-align: left;
+	white-space: nowrap;
+}
+.button-row .right {
+	display: inline-flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 50%;
+}
+
+div.entry-items .button-row {
+	padding: 15px;
+}
+.large-form div.button-row button.child-button, .large-form div.button-row input.child-button {
+	margin-left: 5px;
+	width: 80px;
+	height: 40px;
+	flex; 40%;
+}
+
+.child-button:hover {
+	cursor: pointer;
+}
+
+div.button-row a i {
+	width: 20px;
+	height: 20px;
+	margin-left: 5px;
+}
+
+div.entry-item div.button-row a {
+	text-align: left;
+	margin-left: 5px;
+}
+
+.content .entry-item {
+	padding: 15px;
+	background-color: #e0e0e0;
+	border-radius: 5px;
+}
+.content .entry-item .button-row {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+}
+.content .entry-item .button-row h3 {
+	align-self: flex-start;
+	margin-right: auto;
+	margin-left: 0;
+	width: 100%;
+}
+.content .entry-item .button-row .child-button {
+	align-self: flex-end;
+}
+.content .tabs {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+.content .tabs a {
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+	text-decoration: none;
+	color: inherit;
+}
+.content > .filter-row {
+	display: flex;
+	margin-bottom: 5px;
+	justify-content: flex-end;
+	align-items: center;
+}
+.content > .filter-row > button {
+	margin-left: 5px;
+	width: 125px;
+	height: 30px;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.content > .filter-row > button:hover {
+	cursor: pointer;
+}
+
+.content > .filter-row > button > i {
+	margin-right: 5px;
+}
+.tabs .active {
+	background-color: #e0e0e0;
+	border-radius: 5px;
+}
+.tab-row {
+	display: grid;
+	grid-template-columns: 50px auto;
+}
+.tab-row .br {
+	border-radius: 5px;
+}
+.tab-row .br:hover {
+	background: #ff6f3c;
+}
+
+.entry-item > div > form {
+	width: 100%;
+}
+.entry-item #cm-preview {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+.entry-item > div > form > textarea {
+	width: 100%;
+	height: 100px;
+	resize: none;
+}
+.entry-item > div > form > button {
+	width: 50%;
+}
+#new-comment {
+	display: grid;
+}
+.button-row .left i {
+	width: 40px;
+	height: 30px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+}
+.entry-item > .settings {
+	display: flex;
+	align-items: flex-start;
+}
+.entry-item > .settings > .settings-list {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.entry-item > .settings > .settings-list > .setting-desc {
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 15px;
+	text-decoration: none;
+	height: 40px;
+	width: 100%;
+	font-weight: bold;
+}
+.entry-item > .settings > .settings-display {
+	width: 800px;
+	min-height: 300px;
+	display: inline-flex;
+	padding-left: 15px;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-direction: column;
+	border-left: 2px dashed #757a79;
+}
+.save-discard {
+	margin-top: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+.settings-form .row {
+	display: flex;
+}
+.save-discard button {
+	width: 48%;
+}
+.save-discard button:hover {
+	cursor: pointer;
+}
+#project-tree > ul li i {
+	width: 30px;
+	height: 20px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+}
+#project-tree li {
+	list-style: none;
+}
+#project-tree h1 {
+	text-align: left;
+}
+#project-tree h1:hover {
+	cursor: pointer;
+}
+
+/* This stylesheet is for the various fonts used */
+
+* {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+/* navigation bar text */
+
+.navtop div h1, .navtop div a {
+        display: inline-flex;
+        align-items: center;
+}
+.navtop div h1 {
+        flex: 1;
+        font-size: 24px;
+        padding: 0;
+        margin: 0;
+        color: #eaebed;
+        font-weight: normal;
+}
+.navtop div a {
+        padding: 0 20px;
+        text-decoration: none;
+        color: #c1c4c8;
+        font-weight: bold;
+	height: 100%;
+}
+.navtop div a i, .navtop div h1 i {
+        padding: 2px 8px 0 0;
+}
+.navtop div a:hover {
+        color: #eaebed;
+}
+
+.small-form h1 {
+        color: #5b6574;
+	text-align: center;
+        font-size: 24px;
+        padding: 20px 0 20px 0;
+        border-bottom: 1px solid #dee0e4;
+}
+
+.small-form .links {
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: 0 15px;
+	text-align: center;
+}
+
+.small-form .links a {
+        color: #adb2ba;
+        text-decoration: none;
+        display: inline-flex;
+	align-items: center;
+	justify-content: center;
+        font-weight: bold;
+	height: 50px;
+}
+
+.small-form .links a:hover {
+        color: #9da3ac;
+}
+
+.small-form .links a:active {
+        border-bottom: 3px solid #3274d6;
+        color: #3274d6;
+}
+
+.error_msg {
+	color: #dc2f2f;
+}
+.large-form h2 {
+	text-align: center;
+}
+.button-row .left h3 {
+	font-size: 20px;
+}
+.button-row .child-button {
+	color: inherit;
+	text-decoration: none;
+}
+.button-row a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#subtask_view > ul {
+	list-style-type: none;
+	padding-left: 5px;
+	margin: 0;
+}
+#subtask_view ul li div div a:hover {
+	color: blue;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+p.small-txt {
+	font-size: 14px;
+	color: gray;
+	font-weight: bold;
+}
+div.button-row a.big-txt {
+	font-weight: bold;
+	text-align: right;
+}
+.right p.small-txt, .right form {
+	margin-left: 5px;
+}
+.left p.small-txt {
+	margin-right: 5px;
+}
+.small-form .big-txt {
+	background: #233142;
+	color: #fafafa;
+}
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #3D7B7B; font-style: italic } /* Comment */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #9C6500 } /* Comment.Preproc */
+.codehilite .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #E40000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #008400 } /* Generic.Inserted */
+.codehilite .go { color: #717171 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #687822 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #767600 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #A45A77 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+/* This stylesheet is for outer level containers like the body, home pg background etc.
+   it does not cover what gets styled within these elements */
+
+body {
+        background-color: #435165;
+        margin: 0;
+	align-items: center;
+}
+
+body.content {
+        background-color: #f3f4f7;
+}
+
+/* navigation bar container */
+
+.navtop {
+        background-color: #2f3947;
+        height: 60px;
+        width: 100%;
+        border: 0;
+}
+
+/* register, login */
+.small-form {
+        width: 400px;
+        background-color: #ffffff;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+        margin: 100px auto;
+	display: grid;
+	padding-top: 15x;
+	text-align: center;
+}
+
+/* homepage, projects, subtasks 
+ */
+.large-form {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 5px;
+}
+body.content {
+	width: 100%;
+}
+.content {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.new-template form {
+	background-color: #34495e;
+	text-align: center;
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
+} 
+div.entry-item {
+	display: block;
+	margin-bottom: 15px;
+}
+

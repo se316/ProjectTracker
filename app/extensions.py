@@ -116,3 +116,18 @@ def get_cursor():
     clean way to get a cursor object
     """
     return mysql.connection.cursor(dict_cursor)
+
+# build main.css with other css files
+def build_stylesheet():
+    """
+    Consolidate all .css stylesheets into a single one.
+    """
+    spath = 'static/'
+    fnames = [fn for fn in listdir('static') if fn.endswith('.css') and fn != 'main.css']
+    css = ''
+    for fn in fnames:
+        with open(spath+fn, 'r') as f:
+            stylesheet = f.read()
+            css += stylesheet + '\n'
+    with open(spath + 'main.css','w') as f:
+        f.write(css)

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from json import loads
 from datetime import datetime
-from extensions import mysql as con, marked, dict_cursor, get_cursor, \
+from extensions import mysql as con, marked, dict_cursor, get_cursor, build_stylesheet, \
     stm_login, stm_projects, stm_subtasks, stm_select_project, \
     stm_select_subtask, stm_comments, stm_new_comment, stm_all_subtasks
 
@@ -30,6 +30,15 @@ def status_list():
     'Backlog'
     ]
     return {'status_list' : statuses}
+
+
+@view_bp.context_processor
+def consolidate_stylesheets():
+    """
+    Used to consolidate all stylesheets into a single one.
+    """
+    build_stylesheet()
+    return {'stylesheet':'built'}
 
 
 @view_bp.route('/')

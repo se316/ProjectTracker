@@ -31,4 +31,4 @@ def index():
 
 
 # run the server
-app.run(debug=True, host='0.0.0.0', port='443', ssl_context='adhoc')
+app.run(debug=True, host='0.0.0.0', port='443', ssl_context='adhoc', threaded=True)

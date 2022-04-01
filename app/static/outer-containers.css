@@ -32,14 +32,6 @@ body.content {
 }
 
 /* homepage, projects, subtasks 
- *
- I probs either want to generalize these options to work with a form /and/ the home pg, or
- make a new thing for home page content. I think that's still on my to-do list actually but
- check your notebook to see what u have css for vs what u need. 
-
- also, I believe what you currently have marked as `.loggedin` should be `.content` ?
- double check where it's referenced and see if that's correct.
- *
  */
 .large-form {
 	width: 1000px;
