@@ -52,7 +52,7 @@
 		{% if projects %}
 		<ul style='display: none'>
 		{% for project in projects %}
-		{% if project['pstatus'] not in ['Closed','Blocked','Backlog','Complete'] %}
+		{% if project['pstatus'] not in ['Closed','Blocked','Complete'] %}
 			<li>
 				<i id="open-proj-icon-{{project['pid']}}"></i>
 				<a href='{{ url_for('view.project', projid=project['pid'])}}'>
@@ -79,7 +79,7 @@
 		{% if subtasks %}
 		<ul style='display: none'>
 		{% for subtask in subtasks %}
-		{% if subtask['ststatus'] not in ['Closed','Blocked','Backlog','Complete'] %}
+		{% if subtask['ststatus'] not in ['Closed','Blocked','Complete'] %}
 			<li>
 				<i id="open-st-icon-{{subtask['stid']}}"></i>
 				<a href='{{ url_for('view.subtask', stid=subtask['stid'])}}'>
