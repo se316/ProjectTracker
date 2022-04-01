@@ -267,7 +267,7 @@ div.entry-item div.button-row a {
 .save-discard button:hover {
 	cursor: pointer;
 }
-#project-tree > ul li i {
+#project-tree > ul li i, #open-projects > ul li i, #open-subtasks > ul li i {
 	width: 30px;
 	height: 20px;
 	display: inline-flex;
@@ -275,12 +275,25 @@ div.entry-item div.button-row a {
 	justify-content: center;
 	border-radius: 5px;
 }
-#project-tree li {
+#project-tree li, #open-projects li, #open-subtasks li {
 	list-style: none;
 }
-#project-tree h1 {
+#project-tree h1, #open-projects h1, #open-subtasks h1 {
 	text-align: left;
 }
-#project-tree h1:hover {
+#project-tree h1:hover , #open-projects h1:hover, #open-subtasks h1:hover {
 	cursor: pointer;
+}
+#stats-table table {
+	border-collapse: collapse;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+#stats-table th, #stats-table td {
+	width: 100px;
+	height: 30px;
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
 }

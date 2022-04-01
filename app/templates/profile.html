@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 {% block title %} Profile {% endblock %}
 {% block content %}
+
+{# Project Tree #}
 <div class='entry-item'>
 	<div id='project-tree'>
-		<h1 class='title' onclick='ptree_toggle();' title='Show an overview of all projects and subtasks'>
+		<h1 class='title' onclick='ptree_toggle("project-tree","project-tree-toggle");' title='Show an overview of all projects and subtasks'>
 			Project Tree 
 			<i id='project-tree-toggle' class='fa-solid fa-caret-down'></i>
 		</h1>
@@ -37,15 +39,140 @@
 		{% else %}
 		<p>No projects created yet</p>
 		{% endif %}
+	</div>
 </div>
+
+{# Open Projects #}
+<div class='entry-item'>
+	<div id='open-projects'>
+		<h1 class='title' onclick='ptree_toggle("open-projects","open-projects-toggle");' title='Show a list of your open projects'>
+			Open Projects
+			<i id='open-projects-toggle' class='fa-solid fa-caret-down'></i>
+		</h1>
+		{% if projects %}
+		<ul style='display: none'>
+		{% for project in projects %}
+		{% if project['pstatus'] not in ['Closed','Blocked','Backlog','Complete'] %}
+			<li>
+				<i id="open-proj-icon-{{project['pid']}}"></i>
+				<a href='{{ url_for('view.project', projid=project['pid'])}}'>
+					{{ project['pname'] }}
+				</a>
+			</li>
+		{% endif %}
+		{% endfor %}
+		</ul>
+		{% else %}
+		<p>No projects created yet</p>
+		{% endif %}
+	</div>
+</div>
+
+{# Open Subtasks #}
+
+<div class='entry-item'>
+	<div id='open-subtasks'>
+		<h1 class='title' onclick='ptree_toggle("open-subtasks","open-subtasks-toggle");' title='Show a list of your open subtasks'>
+			Open Subtasks
+			<i id='open-subtasks-toggle' class='fa-solid fa-caret-down'></i>
+		</h1>
+		{% if subtasks %}
+		<ul style='display: none'>
+		{% for subtask in subtasks %}
+		{% if subtask['ststatus'] not in ['Closed','Blocked','Backlog','Complete'] %}
+			<li>
+				<i id="open-st-icon-{{subtask['stid']}}"></i>
+				<a href='{{ url_for('view.subtask', stid=subtask['stid'])}}'>
+					{{ subtask['stname'] }}
+				</a>
+			</li>
+		{% endif %}
+		{% endfor %}
+		</ul>
+		{% else %}
+		<p>No subtasks created yet</p>
+		{% endif %}
+	</div>
+</div>
+{# Stats Table #}
+
+<div class='entry-item'>
+	<div id='stats-table'>
+		<h1 class='title' onclick='ptree_toggle("stats-table","stats-table-toggle");' title='Show a list of your open subtasks'>
+			Projects and Subtasks Summary
+			<i id='stats-table-toggle' class='fa-solid fa-caret-down'></i>
+		</h1>
+		{% if subtasks and projects %}
+		<ul style='display: none'>
+			<table>
+				<tr>
+					<th>Status</th>
+					<th>Projects</th>
+					<th>Subtasks</th>
+				</tr>
+				<tr>
+					<td>Complete</td>
+					<td>{{ stats['projects']['complete'] }}</td>
+					<td>{{ stats['subtasks']['complete'] }}</td>
+				</tr>
+				<tr>
+					<td>Review</td>
+					<td>{{ stats['projects']['review'] }}</td>
+					<td>{{ stats['subtasks']['review'] }}</td>
+				</tr>
+				<tr>
+					<td>In Progress</td>
+					<td>{{ stats['projects']['in-progress'] }}</td>
+					<td>{{ stats['subtasks']['in-progress'] }}</td>
+				</tr>
+				<tr>
+					<td>Researching</td>
+					<td>{{ stats['projects']['researching'] }}</td>
+					<td>{{ stats['subtasks']['researching'] }}</td>
+				</tr>
+				<tr>
+					<td>Not Started</td>
+					<td>{{ stats['projects']['not-started'] }}</td>
+					<td>{{ stats['subtasks']['not-started'] }}</td>
+				</tr>
+				<tr>
+					<td>Backlog</td>
+					<td>{{ stats['projects']['backlog'] }}</td>
+					<td>{{ stats['subtasks']['backlog'] }}</td>
+				</tr>
+				<tr>
+					<td>Blocked</td>
+					<td>{{ stats['projects']['blocked'] }}</td>
+					<td>{{ stats['subtasks']['blocked'] }}</td>
+				</tr>
+				<tr>
+					<td>Closed</td>
+					<td>{{ stats['projects']['closed'] }}</td>
+					<td>{{ stats['subtasks']['closed'] }}</td>
+				</tr>
+				<tr>
+					<td>Blocked</td>
+					<td>{{ stats['projects']['blocked'] }}</td>
+					<td>{{ stats['subtasks']['blocked'] }}</td>
+				</tr>
+			</table>
+		</ul>
+		{% else %}
+		<p>No projects and subtasks created yet</p>
+		{% endif %}
+	</div>
+</div>
+
+{# script for updating the icons #}
 	<script src="{{ url_for('static', filename='utils.js') }}"></script>
 	<script>
 	{% if projects %}
 		{% for project in projects %}
 		try {
 			update_element_icon('proj-icon-{{project['pid']}}', '{{project['pstatus']}}');
+			update_element_icon('open-proj-icon-{{project['pid']}}', '{{project['pstatus']}}');
 		} catch (e) {
-			(console.error || console.log).call(console, e.stack || e);
+			console.log(e);
 		}
 		{% endfor %}
 	{% endif %}
@@ -53,8 +180,9 @@
 		{% for subtask in subtasks %}
 		try {
 			update_element_icon('st-icon-{{subtask['stid']}}', '{{subtask['ststatus']}}');
+			update_element_icon('open-st-icon-{{subtask['stid']}}', '{{subtask['ststatus']}}');
 		} catch (e) {
-			(console.error || console.log).call(console, e.stack || e);
+			console.log(e);
 		}		
 		{% endfor %}
 	{% endif %}

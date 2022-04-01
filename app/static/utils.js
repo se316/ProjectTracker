@@ -191,9 +191,9 @@ function convert_md(txt_id) {
 
 // toggle the project tree visibility on the profile page
 
-function ptree_toggle () {
-	var proj_list = document.getElementById('project-tree').children[1];
-	var toggle = document.getElementById('project-tree-toggle');
+function ptree_toggle (to_hide, toggle_id) {
+	var proj_list = document.getElementById(to_hide).children[1];
+	var toggle = document.getElementById(toggle_id);
 
 	if (proj_list.style.display == 'none') {
 		proj_list.style.display = 'block';
