@@ -80,9 +80,9 @@ After projects are created, the default behavior of the home page is to list all
 The profile page contains various information about your projects and subtasks. There are different features available on the profile page and they're summarized below:
 
 * **Project Tree** - the project tree contains a breakdown of all your projects and their respective subtasks and statuses in a nested list format. Subtasks are nested within their projects.
-* **Open Projects** [coming soon] - this section lists all of your open projects.
-* **Open Subtasks** [coming soon] - this section lists all of your open subtasks.
-* **Project/Subtask Stats** [coming soon] - various counts regarding projects, subtasks and their respective statuses.
+* **Open Projects** - this section lists all of your open projects.
+* **Open Subtasks** - this section lists all of your open subtasks.
+* **Project/Subtask Stats** - a summary of projects, subtasks and their respective statuses.
 
 
 ## MySQL DB Credentials
