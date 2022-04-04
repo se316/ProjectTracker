@@ -124,7 +124,7 @@ def profile():
         subtasks = cur.fetchall()
 
         # get data for the stats table
-        cur.execute(stm_stats, (uid,uid))
+        cur.execute(stm_stats, tuple([uid]*4)) # there are 4 spots that need the user_id
         stats = cur.fetchall()
 
         # pass these to the profile template
