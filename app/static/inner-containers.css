@@ -299,6 +299,9 @@ div.entry-item div.button-row a {
 #stats-table th {
 	justify-content: flex-end;
 }
+#stats-table th.theader {
+	justify-content: center;
+}
 #stats-table td {
 	justify-content: center;
 }

@@ -102,6 +102,24 @@ stm_delete_project = 'DELETE FROM projects WHERE user_id = %s AND pid = %s;'
 stm_delete_subtask = 'DELETE FROM subtasks WHERE user_id = %s AND stid = %s;'
 stm_delete_comment = 'DELETE FROM comments WHERE user_id = %s AND cmid = %s;'
 
+# -- query for retrieving the stats table on profile page
+stm_stats = """
+SELECT p.pstatus, IFNULL(p.p_pct,0) AS p_pct, IFNULL(p.p_count,0) AS p_count,
+       IFNULL(s.s_pct,0) AS s_pct, IFNULL(s.s_count, 0) AS s_count
+  FROM (SELECT ststatus, COUNT(ststatus) AS s_count, 
+               COUNT(ststatus) / SUM(COUNT(ststatus)) over () * 100 AS s_pct 
+          FROM subtasks
+         WHERE user_id=%s
+      GROUP BY ststatus) s
+  RIGHT JOIN (SELECT pstatus, COUNT(pstatus) AS p_count,
+               COUNT(pstatus) / SUM(COUNT(pstatus)) over () * 100 AS p_pct
+          FROM projects
+         WHERE user_id=%s
+      GROUP BY pstatus) p
+    ON s.ststatus = p.pstatus
+ ORDER BY s.s_count DESC, p.p_count DESC
+"""
+
 
 # re-usable function for rendering markdown as Github flavored markdown html
 def marked(txt):

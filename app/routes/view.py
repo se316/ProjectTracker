@@ -3,7 +3,7 @@ from json import loads
 from datetime import datetime
 from extensions import mysql as con, marked, dict_cursor, get_cursor, build_stylesheet, \
     stm_login, stm_projects, stm_subtasks, stm_select_project, \
-    stm_select_subtask, stm_comments, stm_new_comment, stm_all_subtasks
+    stm_select_subtask, stm_comments, stm_new_comment, stm_all_subtasks, stm_stats
 
 
 view_bp = Blueprint(
@@ -124,30 +124,8 @@ def profile():
         subtasks = cur.fetchall()
 
         # get data for the stats table
-        stats = {
-                'projects': {
-                    'complete': len([i for i in projects if i['pstatus'] == 'Complete']),
-                    'closed': len([i for i in projects if i['pstatus'] == 'Closed']),
-                    'blocked': len([i for i in projects if i['pstatus'] == 'Blocked']),
-                    'in-progress': len([i for i in projects if i['pstatus'] == 'In Progress']),
-                    'backlog': len([i for i in projects if i['pstatus'] == 'Backlog']),
-                    'review': len([i for i in projects if i['pstatus'] == 'Review']),
-                    'researching': len([i for i in projects if i['pstatus'] == 'Researching']),
-                    'not-started': len([i for i in projects if i['pstatus'] == 'Not Started']),
-                    'pending': len([i for i in projects if i['pstatus'] == 'Pending'])
-                    },
-                'subtasks': {
-                    'complete': len([i for i in subtasks if i['ststatus'] == 'Complete']),
-                    'closed': len([i for i in subtasks if i['ststatus'] == 'Closed']),
-                    'blocked': len([i for i in subtasks if i['ststatus'] == 'Blocked']),
-                    'in-progress': len([i for i in subtasks if i['ststatus'] == 'In Progress']),
-                    'backlog': len([i for i in subtasks if i['ststatus'] == 'Backlog']),
-                    'review': len([i for i in subtasks if i['ststatus'] == 'Review']),
-                    'researching': len([i for i in subtasks if i['ststatus'] == 'Researching']),
-                    'not-started': len([i for i in subtasks if i['ststatus'] == 'Not Started']),
-                    'pending': len([i for i in subtasks if i['ststatus'] == 'Pending'])
-                    }
-                }
+        cur.execute(stm_stats, (uid,uid))
+        stats = cur.fetchall()
 
         # pass these to the profile template
         return render_template('profile.html', projects=projects, subtasks=subtasks, stats=stats)

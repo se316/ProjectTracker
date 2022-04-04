@@ -106,55 +106,21 @@
 		<ul style='display: none'>
 			<table>
 				<tr>
-					<th></th>
-					<th>Projects</th>
-					<th>Subtasks</th>
+					<th>Status</th>
+					<th class='theader'>% of</th>
+					<th class='theader'>Projects</th>
+					<th class='theader'>% of</th>
+					<th class='theader'>Subtasks</th>
 				</tr>
+				{% for stat in stats %}
 				<tr>
-					<th>Complete</th>
-					<td>{{ stats['projects']['complete'] }}</td>
-					<td>{{ stats['subtasks']['complete'] }}</td>
+					<th>{{stat['pstatus']}}</th>
+					<td>{{ '{0:0.2f}'.format(stat['p_pct']) }}</td>
+					<td>{{stat['p_count']}}</td>
+					<td>{{ '{0:0.2f}'.format(stat['s_pct']) }}</td>
+					<td>{{stat['s_count']}}</td>
 				</tr>
-				<tr>
-					<th>Review</th>
-					<td>{{ stats['projects']['review'] }}</td>
-					<td>{{ stats['subtasks']['review'] }}</td>
-				</tr>
-				<tr>
-					<th>In Progress</th>
-					<td>{{ stats['projects']['in-progress'] }}</td>
-					<td>{{ stats['subtasks']['in-progress'] }}</td>
-				</tr>
-				<tr>
-					<th>Researching</th>
-					<td>{{ stats['projects']['researching'] }}</td>
-					<td>{{ stats['subtasks']['researching'] }}</td>
-				</tr>
-				<tr>
-					<th>Not Started</th>
-					<td>{{ stats['projects']['not-started'] }}</td>
-					<td>{{ stats['subtasks']['not-started'] }}</td>
-				</tr>
-				<tr>
-					<th>Backlog</th>
-					<td>{{ stats['projects']['backlog'] }}</td>
-					<td>{{ stats['subtasks']['backlog'] }}</td>
-				</tr>
-				<tr>
-					<th>Blocked</th>
-					<td>{{ stats['projects']['blocked'] }}</td>
-					<td>{{ stats['subtasks']['blocked'] }}</td>
-				</tr>
-				<tr>
-					<th>Closed</th>
-					<td>{{ stats['projects']['closed'] }}</td>
-					<td>{{ stats['subtasks']['closed'] }}</td>
-				</tr>
-				<tr>
-					<th>Blocked</th>
-					<td>{{ stats['projects']['blocked'] }}</td>
-					<td>{{ stats['subtasks']['blocked'] }}</td>
-				</tr>
+				{% endfor %}
 			</table>
 		</ul>
 		{% else %}
