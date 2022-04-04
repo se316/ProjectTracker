@@ -140,7 +140,7 @@ ORDER BY p_count DESC, s_count DESC
 """
 
 stm_last_comments = """
-SELECT cm.stid, st.stname, cm.comment, cm.last_modified_time 
+SELECT cm.stid, st.stname, cm.comment, cm.last_modified_time, cm.cmid
   FROM comments cm
   JOIN (SELECT stname, stid
           FROM subtasks) st

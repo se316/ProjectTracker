@@ -108,7 +108,7 @@
 			<hr>
 			<li>
 				<p class='small-txt'>Commented at {{comment['last_modified_time']}} for: 
-					<a href='{{ url_for("view.subtask", stid=comment['stid']) }}'>
+				<a href='{{ url_for("view.comments", stid=comment['stid']) + '#cm{}'.format(comment['cmid']) }}'>
 						{{ comment['stname'] }}
 					</a>
 				</p>
