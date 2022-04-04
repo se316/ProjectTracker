@@ -94,6 +94,34 @@
 		{% endif %}
 	</div>
 </div>
+
+{# last N comments table #}
+<div class='entry-item'>
+	<div id='last-comments'>
+		<h1 class='title' onclick='ptree_toggle("last-comments","last-comments-toggle");' title='See the last 10 comments posted'>
+			Last 10 Comments
+			<i id="last-comments-toggle" class='fa-solid fa-caret-down'></i>
+		</h1>
+		{% if comments %}
+		<ul style='display: none'>
+			{% for comment in comments %}
+			<hr>
+			<li>
+				<p class='small-txt'>Commented at {{comment['last_modified_time']}} for: 
+					<a href='{{ url_for("view.subtask", stid=comment['stid']) }}'>
+						{{ comment['stname'] }}
+					</a>
+				</p>
+				{{ comment['comment'] | safe}}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No comments made yet</p>
+		{% endif %}
+	</div>
+</div>
+
 {# Stats Table #}
 
 <div class='entry-item'>

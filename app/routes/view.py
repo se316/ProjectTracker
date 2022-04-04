@@ -3,7 +3,8 @@ from json import loads
 from datetime import datetime
 from extensions import mysql as con, marked, dict_cursor, get_cursor, build_stylesheet, \
     stm_login, stm_projects, stm_subtasks, stm_select_project, \
-    stm_select_subtask, stm_comments, stm_new_comment, stm_all_subtasks, stm_stats
+    stm_select_subtask, stm_comments, stm_new_comment, stm_all_subtasks, \
+    stm_stats, stm_last_comments
 
 
 view_bp = Blueprint(
@@ -127,8 +128,18 @@ def profile():
         cur.execute(stm_stats, tuple([uid]*4)) # there are 4 spots that need the user_id
         stats = cur.fetchall()
 
+        # get last 10 comments
+        cur.execute(stm_last_comments, (uid,))
+        comments = cur.fetchall()
+
+        # if comments exist, apply markdown for rendering
+        if comments:
+            for comment in comments:
+                ind = comments.index(comment)
+                comments[ind]['comment'] = marked(comments[ind]['comment'])
+
         # pass these to the profile template
-        return render_template('profile.html', projects=projects, subtasks=subtasks, stats=stats)
+        return render_template('profile.html', projects=projects, subtasks=subtasks, stats=stats, comments=comments)
     else:
         return redirect(url_for('view.login'))
 

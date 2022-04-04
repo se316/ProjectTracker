@@ -139,6 +139,16 @@ SELECT *
 ORDER BY p_count DESC, s_count DESC
 """
 
+stm_last_comments = """
+SELECT cm.stid, st.stname, cm.comment, cm.last_modified_time 
+  FROM comments cm
+  JOIN (SELECT stname, stid
+          FROM subtasks) st
+    ON st.stid = cm.stid
+ WHERE user_id = %s
+ ORDER BY cm.last_modified_time DESC
+ LIMIT 10
+"""
 
 # re-usable function for rendering markdown as Github flavored markdown html
 def marked(txt):

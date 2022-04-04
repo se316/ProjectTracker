@@ -82,7 +82,8 @@ The profile page contains various information about your projects and subtasks. 
 * **Project Tree** - the project tree contains a breakdown of all your projects and their respective subtasks and statuses in a nested list format. Subtasks are nested within their projects.
 * **Open Projects** - this section lists all of your open projects.
 * **Open Subtasks** - this section lists all of your open subtasks.
-* **Project/Subtask Stats** - a summary of projects, subtasks and their respective statuses.
+* **Last 10 Comments** - this section shows the last 10 comments made with links to their subtasks.
+* **Project/Subtask Stats** - a table containing a summary of your work. See what statuses are assigned, how many are in those statuses and what share they represent as a percentage of all projects or subtasks respectively. 
 
 
 ## MySQL DB Credentials
