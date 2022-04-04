@@ -305,3 +305,7 @@ div.entry-item div.button-row a {
 #stats-table td {
 	justify-content: center;
 }
+ul > li > a {
+	text-decoration: none;
+	color: blue;
+}
