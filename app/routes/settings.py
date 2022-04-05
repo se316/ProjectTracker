@@ -85,6 +85,49 @@ def home_filters():
     else:
         return redirect(url_for('view.home'))
 
+@setting_bp.route('/last_n_comments', methods=['GET','POST'])
+def last_n_comments():
+    if 'loggedin' in session:
+        msg = ''
+        # get user preferences
+        usettings = session['user-preferences']
+        if request.method == 'GET':
+            # check if the setting exists, if not then set to 10
+            if 'profile-n-comments' not in usettings:
+                n_comments = 10
+            else:
+                n_comments = usettings['profile-n-comments']
+            return render_template('settings/n-comments.html', n_comments=n_comments, msg=msg)
+        elif request.method == 'POST':
+            # get the amount and save in the preference copy
+            try:
+                n_comments = request.form['n-comments']
+            except:
+                # handle when user presses save but didn't select anything
+                if 'profile-n-comments' not in usettings:
+                    n_comments = 10
+                else:
+                    n_comments = usettings['profile-n-comments']
+
+            usettings['profile-n-comments'] = n_comments
+            new_settings = dumps(usettings)
+
+            # save the new settings
+            cur = get_cursor()
+            arg = (new_settings, session['id'])
+            cur.execute(stm_update_user_preferences, arg)
+            cur.connection.commit()
+
+            # update the session's variable and let user know the update succeeded
+            msg = 'Last N comments updated successfully to {}.'.format(n_comments)
+            session['user-preferences'] = usettings
+            return render_template('settings/n-comments.html', msg=msg, n_comments=n_comments)
+
+            return render_template('settings/n-comments.html', msg=msg)
+    else:
+        return redirect(url_for('view.home'))
+
+
 @setting_bp.route('/password', methods=['GET','POST'])
 def password():
     if 'loggedin' in session:

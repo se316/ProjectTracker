@@ -152,7 +152,7 @@ SELECT cm.stid, st.stname, cm.comment, cm.last_modified_time, cm.cmid
     ON st.stid = cm.stid
  WHERE user_id = %s
  ORDER BY cm.last_modified_time DESC
- LIMIT 10
+ LIMIT %s
 """
 
 # re-usable function for rendering markdown as Github flavored markdown html

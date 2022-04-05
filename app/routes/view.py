@@ -114,6 +114,7 @@ def profile():
     if 'loggedin' in session:
         # get id for retrieving projects and subtasks
         uid = session['id']
+        usettings = session['user-preferences']
         cur = get_cursor()
 
         # get projects
@@ -128,8 +129,14 @@ def profile():
         cur.execute(stm_stats, tuple([uid]*4)) # there are 4 spots that need the user_id
         stats = cur.fetchall()
 
-        # get last 10 comments
-        cur.execute(stm_last_comments, (uid,))
+        # get or set the number of comments shown in last n comments section
+        if 'profile-n-comments' not in usettings.keys():
+            n_comments = 10
+        else:
+            n_comments = int(usettings['profile-n-comments'])
+
+        # get last N comments
+        cur.execute(stm_last_comments, (uid,n_comments))
         comments = cur.fetchall()
 
         # if comments exist, apply markdown for rendering
@@ -139,7 +146,7 @@ def profile():
                 comments[ind]['comment'] = marked(comments[ind]['comment'])
 
         # pass these to the profile template
-        return render_template('profile.html', projects=projects, subtasks=subtasks, stats=stats, comments=comments)
+        return render_template('profile.html', projects=projects, subtasks=subtasks, stats=stats, comments=comments, n_comments=n_comments)
     else:
         return redirect(url_for('view.login'))
 

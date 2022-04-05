@@ -258,6 +258,10 @@ div.entry-item div.button-row a {
 	display: flex;
 	justify-content: space-between;
 }
+.settings-form {
+	width: 400px;
+	text-align: center;
+}
 .settings-form .row {
 	display: flex;
 }
@@ -286,6 +290,12 @@ div.entry-item div.button-row a {
 }
 #project-tree h1:hover , #open-projects h1:hover, #open-subtasks h1:hover, #last-comments h1:hover, #stats-table h1:hover {
 	cursor: pointer;
+}
+#last-comments > ul {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: 600px;
+	padding-right: 15px;
 }
 #stats-table table {
 	border-collapse: collapse;
