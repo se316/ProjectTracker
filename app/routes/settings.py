@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from json import dumps, loads
 from extensions import mysql as con, marked, dict_cursor, get_cursor, \
-    stm_update_user, stm_check_user, stm_update_user_preferences
+    stm_update_user, stm_check_user, stm_update_user_preferences, stm_login, stm_update_password
 import re
 
 
@@ -82,5 +82,54 @@ def home_filters():
             session['user-preferences'] = usettings
             return render_template('settings/home-filters.html', msg=msg)
             
+    else:
+        return redirect(url_for('view.home'))
+
+@setting_bp.route('/password', methods=['GET','POST'])
+def password():
+    if 'loggedin' in session:
+        msg = ''
+        if request.method == 'GET':
+            return render_template('settings/password.html', msg=msg)
+        elif request.method == 'POST':
+            # verify all the fields are filled out
+            if all([arg in request.form for arg in ['old-password','new-password','new-password-verify']]):
+                orig_pword = request.form['old-password']
+                new_pword = request.form['new-password']
+                new_pwordv = request.form['new-password-verify']
+                uid = session['id']
+                uname = session['username']
+
+                # verify the new passwords are the same
+                if new_pword != new_pwordv:
+                    msg = 'Your new password should be the same in both fields.'
+                    return render_template('settings/password.html', msg=msg)
+
+                # verify the new password isn't the same as the original
+                if new_pword == orig_pword:
+                    msg = 'Your new password can\'t match the original password.'
+                    return render_template('settings/password.html', msg=msg)
+
+                # verify the original password is the correct one
+                cur = get_cursor()
+                cur.execute(stm_login, (uname, orig_pword))
+                account = cur.fetchone()
+                if not account:
+                    msg = 'Your original password was incorrect.'
+                    return render_template('settings/password.html', msg=msg)
+                else:
+                    # the creds are correct and new passwords match
+                    # set the new password
+                    cur.execute(stm_update_password, (new_pword, uid))
+                    con.connection.commit()
+                    msg = 'Password updated successfully.'
+                    return render_template('settings/password.html', msg=msg)
+
+            else:
+                # if a field is missing say it needs to be filled out
+                msg = 'Please fill out all the fields.'
+                return render_template('settings/password.html', msg=msg)
+
+            return render_template('settings/password.html')
     else:
         return redirect(url_for('view.home'))

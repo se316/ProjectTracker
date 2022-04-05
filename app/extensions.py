@@ -67,6 +67,11 @@ stm_update_user = """
     SET username=%s
     WHERE id = %s;
 """
+stm_update_password = """
+    UPDATE accounts
+    SET password=%s
+    WHERE id = %s;
+"""
 stm_update_project = """
     UPDATE projects
     SET pname=%s, pdescription=%s, last_modified_time=%s

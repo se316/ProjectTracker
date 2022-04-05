@@ -261,6 +261,9 @@ div.entry-item div.button-row a {
 .settings-form .row {
 	display: flex;
 }
+.settings-form > form > input[type="text"], .settings-form > form > input[type="password"] {
+	width: 100%;
+}
 .save-discard button {
 	width: 48%;
 }

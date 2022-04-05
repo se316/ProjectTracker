@@ -261,6 +261,9 @@ div.entry-item div.button-row a {
 .settings-form .row {
 	display: flex;
 }
+.settings-form > form > input[type="text"], .settings-form > form > input[type="password"] {
+	width: 100%;
+}
 .save-discard button {
 	width: 48%;
 }
@@ -275,7 +278,7 @@ div.entry-item div.button-row a {
 	justify-content: center;
 	border-radius: 5px;
 }
-#project-tree li, #open-projects li, #open-subtasks li, #last-comments li {
+#project-tree > ul > li, #project-tree > ul > ul > li, #open-projects > ul > li, #open-subtasks > ul > li, #last-comments > ul > li {
 	list-style: none;
 }
 #project-tree h1, #open-projects h1, #open-subtasks h1, #last-comments h1, #stats-table h1 {
