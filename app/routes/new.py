@@ -80,6 +80,16 @@ def subtask():
                 stdesc = request.form['stdescription']
             else:
                 stdesc = ''
+
+            # make sure we've still got the project id and handle if we don't
+            if not current_project:
+                current_project='does-not-exist'
+                msg = 'Re-open the project this is for in another tab to link them correctly. Avoid going home while filling out a subtask.'
+                return render_template(
+                        'new-subtask.html',
+                        msg=msg,
+                        project_title=title,
+                        current_project=current_project)
             # set initial status and create time
             ststatus = 'Not Started'
             create_time = str(datetime.now())[:19]  # YYYY-MM-DD HH:MM:SS
