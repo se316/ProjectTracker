@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from extensions import mysql as con, marked, stm_login, stm_projects, dict_cursor, get_cursor, \
-    stm_delete_project, stm_delete_subtask, stm_delete_comment
+    stm_delete_project, stm_delete_subtask, stm_delete_comment, stm_delete_account
 
 
 delete_bp = Blueprint(
@@ -72,5 +72,26 @@ def comment(cmid):
             url_for(
                 'view.comments',
                 stid=session['current-subtask']))
+    else:
+        return redirect(url_for('view.login'))
+
+@delete_bp.route('/account')
+def account():
+    """
+    Delete a user's account and all associated data with it.
+    """
+    if 'loggedin' in session:
+        # get user id and cursor object
+        uid = session['id']
+        cur = get_cursor()
+
+        # delete all associated data
+        for stm in stm_delete_account:
+            cur.execute(stm, (uid,))
+            con.connection.commit()
+        
+        # log the user out and return them to the login page
+        return redirect(url_for('view.logout'))
+
     else:
         return redirect(url_for('view.login'))

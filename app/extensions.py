@@ -107,6 +107,14 @@ stm_delete_project = 'DELETE FROM projects WHERE user_id = %s AND pid = %s;'
 stm_delete_subtask = 'DELETE FROM subtasks WHERE user_id = %s AND stid = %s;'
 stm_delete_comment = 'DELETE FROM comments WHERE user_id = %s AND cmid = %s;'
 
+# -- statements run to remove everything a user has from the database
+stm_delete_account = [
+        'DELETE FROM accounts WHERE id = %s;',
+        'DELETE FROM projects WHERE user_id = %s;',
+        'DELETE FROM subtasks WHERE user_id = %s;',
+        'DELETE FROM comments WHERE user_id = %s;'
+        ]
+
 # -- query for retrieving the stats table on profile page
 stm_stats = """
 SELECT *

@@ -157,11 +157,15 @@ function toggle_view(view) {
 
 function confirm_delete(lvl, id) {
 	// url syntax should always be /delete/<lvl>/<id>
-	// lvl is one of: project, subtask, comment
+	// lvl is one of: project, subtask, comment, account
 	// id is the unique id for the lvl you're trying to delete
 	var msg = 'You are about to delete a ' + lvl +'. This cannot be undone.';
 	if (confirm(msg)) {
-		var loc = '/delete/' + lvl + '/' + id;
+		if (id != null) {
+			var loc = '/delete/' + lvl + '/' + id;
+		} else {
+			var loc = '/delete/' + lvl;
+		}
 		window.location = loc;
 	}
 }

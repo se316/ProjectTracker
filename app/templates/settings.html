@@ -8,7 +8,7 @@
 			<a href="{{ url_for('settings.password') }}" class='setting-desc'>Edit Password</a>
 			<a href="{{ url_for('settings.home_filters') }}" class='setting-desc'>Home Page Filters</a>
 			<a href="{{ url_for('settings.last_n_comments') }}" class='setting-desc'>Last N Comments</a>
-			<a href="#" class='setting-desc'>Delete Account</a>
+			<a onclick="confirm_delete('account', null)" class='setting-desc'>Delete Account</a>
 		</div> <!-- List of settings are linked to here -->
 		<div class='settings-display'>
 			{% block setting %}{% endblock %}
