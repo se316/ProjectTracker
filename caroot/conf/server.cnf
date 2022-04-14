@@ -1,0 +1,21 @@
+[ req ]
+prompt                  = no
+distinguished_name      = server_distinguished_name
+req_extensions          = v3_req
+
+[ server_distinguished_name ]
+commonName              = projecttracker.io
+stateOrProvinceName     = WA
+countryName             = US
+emailAddress            = admin@projecttracker.io
+organizationName        = Project Tracker
+organizationalUnitName  = projecttracker
+
+[ v3_req ]
+basicConstraints        = CA:FALSE
+keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName          = @alt_names
+
+[ alt_names ]
+DNS.0                   = localhost
+DNS.1                   = projecttracker.io

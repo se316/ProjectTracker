@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from routes import view, delete, edit, new, settings
-from extensions import mysql as con
+from extensions import mysql as con, get_ssl
 from os import getenv
 
 # configure the app for MySQL
@@ -31,4 +31,4 @@ def index():
 
 
 # run the server
-app.run(debug=True, host='0.0.0.0', port='443', ssl_context='adhoc', threaded=True)
+app.run(debug=True, host='0.0.0.0', port='443', ssl_context=get_ssl(), threaded=True)

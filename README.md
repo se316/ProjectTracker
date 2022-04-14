@@ -34,6 +34,25 @@ To run Project Tracker:
 
 When navigating to ProjectTracker for the first time, you'll need to create an account to login with. Using accounts makes it so multiple people on the local network can track their work separately. When logging in for the first time, a new project can be created using the New Project button in the top right corner. After creating and describing a project, you're able to go to its individual project page and create Subtasks for it in the Subtasks tab. On the individual subtask page, you're able to see the description in one tab and add comments in the other. Each subtask has a list of statuses they can be marked as, and when all subtasks are complete, the project can be marked as complete. There's nothing to stop you from changing the project status without marking all the subtasks as complete, how you use project tracker is up to you and a list of terms, statuses and references will be provided below. A final note on usage is all descriptions and comments can render markdown for greater organization.
 
+## How to enable proper HTTPS in Project Tracker
+
+To avoid the browser warning shown when accessing Project Tracker, login and go to your Settings. The CA's certificate will be available for download in the Certificate setting. Once downloaded, apply the following workflows for installation. Once installed and the exception's been removed, the browser will trust ProjectTracker to handle secure connections.
+
+How to add the CA certificate in Firefox:
+1. Open the options menu in the top-right corner of your browser window, open Settings.
+1. Select "Privacy & Security".
+1. Scroll down to "Certificates" and select "View Certificates".
+1. Click the "Authorities" tab and select "Import". Select and open the downloaded certificate.
+1. Click the "Servers" tab and remove the exception made for the site. (e.g. localhost if it's running on your computer)
+
+How to add the CA certificate in Chromium-based browsers:
+1. Open the options menu in the top-right corner of your browser window, open Settings.
+1. Select "Privacy & Security", then select "Security".
+1. Scroll to the bottom and click "Manage certificates".
+1. Select the "Trusted Root Certification Authorities" tab, then select "Import".
+1. Select and open the downloaded certificate, be sure All filetypes are showing.
+1. Restart the browser to have the new certificate applied to your connection.
+
 ## Terms and References
 
 This section is meant to briefly discuss various aspects of the Project Tracker

@@ -191,3 +191,15 @@ def build_stylesheet():
             css += stylesheet + '\n'
     with open(spath + 'main.css','w') as f:
         f.write(css)
+
+# return the certificate, key pair for https
+def get_ssl():
+    """
+    Returns the locations of the server's public certificate and private key for https.
+    Is consumed by app.run(ssl_context=<output of this f()>)
+    """
+    cert_dir = '/certs/'
+    pub_crt = cert_dir + 'pub/server_crt.pem'
+    priv_key = cert_dir + 'private/server_key.pem'
+    ssl_context = (pub_crt, priv_key)
+    return ssl_context

@@ -15,6 +15,13 @@ services:
                 container_name: mysql-db
                 ports: 
                         - "3306:3306"
+        caroot:
+                build: ./caroot
+                entrypoint: ["/bin/sh","run.sh"]
+                volumes:
+                        - certDir:/opt/rootca
+                image: caroot:latest
+                container_name: caroot
         project-app:
                 build:
                         context: ./app
@@ -29,9 +36,11 @@ services:
                 ports:
                         - "443:443"
                 volumes:
+                        - certDir:/certs
                         - ./app/static:/app/static
                         - ./app/templates:/app/templates
 
 volumes:
+        certDir:
         sqlData:
         sqlLogs:
