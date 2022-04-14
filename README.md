@@ -4,7 +4,13 @@ Project Tracker is a locally hosted web tool built for assisting with project ma
 
 ## Description
 
-Project Tracker is made up of 2 containers and launched with docker-compose. A flask web server handles user interactions and a mysql database stores user accounts, user settings as a json and created projects. Projects themselves can be broken up into Subtasks and Status Management is available at both levels with visual feedback like different colored icons for each status. 
+Project Tracker is made up of 3 containers and launched with docker-compose. 
+
+1. A flask web server handles user interactions and is where you'll be doing the project work.
+1. A CA server generates the certificates required for a secure connection.
+1. A mysql database stores user accounts, user settings as a json and created projects. 
+
+Projects themselves can be broken up into Subtasks and Status Management is available at both levels with visual feedback like different colored icons for each status. Users are able to comment on their Subtasks.
 
 The main purpose and benefit to using Project Tracker is to be able to answer with just a simple glance: 
 
@@ -29,6 +35,7 @@ To run Project Tracker:
 - after building it the first time, run PT with ```docker-compose up```. Append the command with ```-d``` to run it in the background.
 - once it's up and running, navigate to https://localhost in a browser to be taken to the login/register page.
 - when you want to stop ProjectTracker, open a terminal in the project's root directory and run ```docker-compose stop```
+- for a proper https connection, refer to section "*How to enable proper HTTPS in Project Tracker*".
 
 ## How to Use Project Tracker
 
