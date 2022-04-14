@@ -4,6 +4,7 @@ from os import listdir
 import MySQLdb.cursors
 import logging
 import markdown
+from flask import send_file
 from json import dumps
 logging.basicConfig(level='INFO')
 
@@ -203,3 +204,10 @@ def get_ssl():
     priv_key = cert_dir + 'private/server_key.pem'
     ssl_context = (pub_crt, priv_key)
     return ssl_context
+
+# send a file for download
+def download(loc):
+    """
+    Returns a file for download from the server.
+    """
+    return send_file(loc, as_attachment=True)

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from json import dumps, loads
-from extensions import mysql as con, marked, dict_cursor, get_cursor, \
+from extensions import mysql as con, marked, dict_cursor, get_cursor, download, \
     stm_update_user, stm_check_user, stm_update_user_preferences, stm_login, stm_update_password
 import re
 
@@ -19,6 +19,18 @@ def page():
     else:
         return redirect(url_for('view.home'))
 
+
+@setting_bp.route('/certificate')
+def certificate():
+    if 'loggedin' in session:
+        return render_template('settings/certificate.html')
+    else:
+        return redirect(url_for('view.home'))
+
+@setting_bp.route('/dl_cert')
+def download_cert():
+    loc = '/certs/rootcert/ca_crt.pem'
+    return download(loc)
 
 @setting_bp.route('/username', methods=['GET', 'POST'])
 def username():

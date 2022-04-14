@@ -1,0 +1,27 @@
+{% extends "settings.html" %}
+{% block title %}Certificate Download{% endblock %}
+{% block setting %}
+<h5>Description</h5>
+<p class='small-txt'>
+To avoid the browser warning shown when accessing Project Tracker, download the certificate below and follow the instructions for adding it to your browser. Once added, your browser will trust Project Tracker with handling a secure connection without having to make an exceptions.
+</p>
+<h5>Certificate Link</h5>
+<a href="{{ url_for('settings.download_cert') }}">Download Trusted CA Certificate</a>
+<h5>How to add the certificate in FireFox</h5>
+<ul>
+	<li> Open the options menu in the top-right corner of your browser window, open Settings. </li>
+	<li> Select "Privacy & Security". </li>
+	<li> Scroll down to "Certificates" and select "View Certificates". </li>
+	<li> Click the "Authorities" tab and select "Import". Select and open the downloaded certificate. </li>
+	<li> Click the "Servers" tab and remove the exception made for the site. (e.g. localhost if it's running on your computer) </li>
+</ul>
+<h5>How to add the certificate in Chromium-based browsers</h5>
+<ul>
+<li> Open the options menu in the top-right corner of your browser window, open Settings. </li>
+<li> Select "Privacy & Security", then select "Security". </li>
+<li> Scroll to the bottom and click "Manage certificates". </li>
+<li> Select the "Trusted Root Certification Authorities" tab, then select "Import". </li>
+<li> Select and open the downloaded certificate, be sure All filetypes are showing. </li>
+<li> Restart the browser to have the new certificate applied to your connection. </li>
+</ul>
+{% endblock %}
