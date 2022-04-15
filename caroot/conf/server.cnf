@@ -19,3 +19,4 @@ subjectAltName          = @alt_names
 [ alt_names ]
 DNS.0                   = localhost
 DNS.1                   = projecttracker.io
+#IP.1                    = <IP Address Project Tracker's on>

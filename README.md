@@ -60,6 +60,23 @@ How to add the CA certificate in Chromium-based browsers:
 1. Select and open the downloaded certificate, be sure All filetypes are showing.
 1. Restart the browser to have the new certificate applied to your connection.
 
+### Additional notes on secure access
+
+By default, Project Tracker creates a valid secure connection when an end user connects to it via https://localhost or https://projecttracker.io. Localhost can be used on the same computer it's running on with no modifications; there are different ways to access it by "projectracker.io" or an IP address for the computer PT's running from listed below. 
+
+- If you have access to a DNS server (applies to everyone's access in your network):
+    - Have the DNS server point "projecttracker.io" at the IP Address it's running on.
+    - This makes it so every DNS request for projecttracker is directed towards the right place and the certificate's requirements are valid.
+- If you know the IP Address before building for the first time (applies to everyone's access by IP on your network from the server's side):
+    - Uncomment the last line in caroot/conf/server.cnf and replace ```<IP Address Project Tracker's on>``` with the IP Address.
+    - This makes it so if anyone visits "https://[yourip]", the connection will be valid because the IP Address is listed as a valid name in the certificate.
+- If you don't have access to a DNS server and don't want to rebuild everything by retroactively doing the last step (applies to an end user's access by hostname from their own system):
+    - Modify the hosts file on your computer with a new line that says "[Project Tracker's IP Address]    projecttracker.io"
+    - This makes it so when you type "projecttracker.io" in the browser, it connects to project tracker's IP Address by the name set which is a valid name in the certificate. 
+    - The hosts file on linux is located at: /etc/hosts
+    - The hosts file on windows is located at: C:\Windows\System32\drivers\etc\hosts (must open as admin to save changes)
+    - The hosts file on mac os is located at: /etc/hosts (must edit as root, [see how to enable root on mac os](https://kinsta.com/knowledgebase/edit-mac-hosts-file/#how-to-find-and-edit-your-mac-hosts-file-in-4-steps))
+
 ## Terms and References
 
 This section is meant to briefly discuss various aspects of the Project Tracker
