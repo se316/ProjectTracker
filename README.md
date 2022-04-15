@@ -39,7 +39,17 @@ To run Project Tracker:
 
 ## How to Use Project Tracker
 
-When navigating to ProjectTracker for the first time, you'll need to create an account to login with. Using accounts makes it so multiple people on the local network can track their work separately. When logging in for the first time, a new project can be created using the New Project button in the top right corner. After creating and describing a project, you're able to go to its individual project page and create Subtasks for it in the Subtasks tab. On the individual subtask page, you're able to see the description in one tab and add comments in the other. Each subtask has a list of statuses they can be marked as, and when all subtasks are complete, the project can be marked as complete. There's nothing to stop you from changing the project status without marking all the subtasks as complete, how you use project tracker is up to you and a list of terms, statuses and references will be provided below. A final note on usage is all descriptions and comments can render markdown for greater organization.
+When navigating to ProjectTracker for the first time, you'll need to create an account to login with. Using accounts makes it so multiple people on the local network can track their work separately. 
+
+When logging in for the first time, a new project can be created using the New Project button in the top right corner. 
+
+After creating and describing a project, you're able to go to its individual project page and create Subtasks for it in the Subtasks tab. 
+
+On the individual subtask page, you're able to see the description in one tab and add comments in the other. 
+
+Each subtask has a list of statuses they can be marked as, and when all subtasks are complete, the project can be marked as complete. 
+
+There's nothing to stop you from changing the project status without marking all the subtasks as complete, how you use project tracker is up to you and a list of terms, statuses and references will be provided starting from the "*Terms and References*" section. A final note on basic usage is all descriptions and comments can [render markdown for greater organization](https://gist.github.com/jonschlinkert/5854601).
 
 ## How to enable proper HTTPS in Project Tracker
 
