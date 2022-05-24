@@ -154,11 +154,14 @@ ORDER BY p_count DESC, s_count DESC
 """
 
 stm_last_comments = """
-SELECT cm.stid, st.stname, cm.comment, cm.last_modified_time, cm.cmid
+SELECT cm.stid, st.stname, cm.comment, cm.last_modified_time, cm.cmid, pj.pname, pj.pid
   FROM comments cm
-  JOIN (SELECT stname, stid
+  JOIN (SELECT stname, stid, pid
           FROM subtasks) st
     ON st.stid = cm.stid
+  JOIN (SELECT pname, pid
+          FROM projects) pj
+    ON pj.pid = st.pid
  WHERE user_id = %s
  ORDER BY cm.last_modified_time DESC
  LIMIT %s
